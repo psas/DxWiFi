@@ -80,6 +80,23 @@
 <wire x1="9.25" y1="2" x2="9.25" y2="-3.78" width="0.127" layer="51"/>
 <text x="-3" y="3" size="1.27" layer="51">&gt;NAME</text>
 </package>
+<package name="R0805">
+<description>&lt;b&gt;RESISTOR&lt;/b&gt;&lt;p&gt;
+chip</description>
+<wire x1="-0.41" y1="0.635" x2="0.41" y2="0.635" width="0.1524" layer="51"/>
+<wire x1="-0.41" y1="-0.635" x2="0.41" y2="-0.635" width="0.1524" layer="51"/>
+<wire x1="-1.973" y1="0.983" x2="1.973" y2="0.983" width="0.0508" layer="39"/>
+<wire x1="1.973" y1="0.983" x2="1.973" y2="-0.983" width="0.0508" layer="39"/>
+<wire x1="1.973" y1="-0.983" x2="-1.973" y2="-0.983" width="0.0508" layer="39"/>
+<wire x1="-1.973" y1="-0.983" x2="-1.973" y2="0.983" width="0.0508" layer="39"/>
+<smd name="1" x="-0.85" y="0" dx="1.3" dy="1.5" layer="1"/>
+<smd name="2" x="0.85" y="0" dx="1.3" dy="1.5" layer="1"/>
+<text x="-0.762" y="1.016" size="1.27" layer="25">&gt;NAME</text>
+<text x="-0.762" y="-2.286" size="1.27" layer="27">&gt;VALUE</text>
+<rectangle x1="0.4064" y1="-0.6985" x2="1.0564" y2="0.7015" layer="51"/>
+<rectangle x1="-1.0668" y1="-0.6985" x2="-0.4168" y2="0.7015" layer="51"/>
+<rectangle x1="-0.1999" y1="-0.5001" x2="0.1999" y2="0.5001" layer="35"/>
+</package>
 </packages>
 <symbols>
 <symbol name="MINI-USB-5">
@@ -119,6 +136,19 @@
 <pin name="S1" x="-2.54" y="-2.54" visible="off" length="short" direction="pas" rot="R90"/>
 <pin name="S2" x="0" y="-2.54" visible="off" length="short" direction="pas" rot="R90"/>
 </symbol>
+<symbol name="BEAD-IND">
+<wire x1="-1.27" y1="-0.254" x2="-0.254" y2="0" width="0.1524" layer="94" curve="-36.869898" cap="flat"/>
+<wire x1="-1.27" y1="-0.254" x2="-0.762" y2="-1.016" width="0.1524" layer="94" curve="-46.397181" cap="flat"/>
+<wire x1="-1.778" y1="-1.016" x2="-1.27" y2="-0.254" width="0.1524" layer="94" curve="-46.397181" cap="flat"/>
+<wire x1="-1.778" y1="-1.016" x2="-0.762" y2="-1.016" width="0.1524" layer="94" curve="208.072487" cap="flat"/>
+<wire x1="-2.54" y1="0" x2="-2.286" y2="0" width="0.1524" layer="94"/>
+<wire x1="-0.254" y1="0" x2="0" y2="0" width="0.1524" layer="94"/>
+<wire x1="-2.286" y1="0" x2="-1.27" y2="-0.254" width="0.1524" layer="94" curve="-36.869898" cap="flat"/>
+<text x="-4.318" y="1.27" size="1.778" layer="95">&gt;NAME</text>
+<text x="-4.318" y="-4.064" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="1" x="-5.08" y="0" visible="off" length="short" direction="pas" swaplevel="1"/>
+<pin name="2" x="2.54" y="0" visible="off" length="short" direction="pas" swaplevel="1" rot="R180"/>
+</symbol>
 </symbols>
 <devicesets>
 <deviceset name="MINI-USB_SHIELD" prefix="CONN">
@@ -126,7 +156,7 @@
 &lt;p&gt;MUSBB15134&lt;/p&gt;</description>
 <gates>
 <gate name="G41" symbol="MINI-USB-5" x="0" y="0"/>
-<gate name="S" symbol="SHIELD2" x="2.54" y="-12.7" addlevel="request"/>
+<gate name="S" symbol="SHIELD2" x="2.54" y="-12.7" addlevel="always"/>
 </gates>
 <devices>
 <device name="" package="RUGGEDUSB">
@@ -138,6 +168,24 @@
 <connect gate="G41" pin="5" pad="5"/>
 <connect gate="S" pin="S1" pad="SLT1"/>
 <connect gate="S" pin="S2" pad="SLT2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="INDUCTOR-BEAD" prefix="L" uservalue="yes">
+<description>&lt;b&gt;INDUCTOR&lt;/b&gt;&lt;p&gt;
+SMD Bead inductor</description>
+<gates>
+<gate name="G$1" symbol="BEAD-IND" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="R0805">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <technologies>
 <technology name=""/>
