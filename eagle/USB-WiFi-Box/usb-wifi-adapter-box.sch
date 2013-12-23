@@ -43,8 +43,12 @@
 <layer number="47" name="Measures" color="7" fill="1" visible="no" active="no"/>
 <layer number="48" name="Document" color="7" fill="1" visible="no" active="no"/>
 <layer number="49" name="Reference" color="7" fill="1" visible="no" active="no"/>
+<layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
 <layer number="51" name="tDocu" color="7" fill="1" visible="no" active="no"/>
 <layer number="52" name="bDocu" color="7" fill="1" visible="no" active="no"/>
+<layer number="53" name="tGND_GNDA" color="7" fill="1" visible="no" active="no"/>
+<layer number="54" name="bGND_GNDA" color="7" fill="1" visible="no" active="no"/>
+<layer number="56" name="wert" color="7" fill="1" visible="no" active="no"/>
 <layer number="91" name="Nets" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="92" name="Busses" color="1" fill="1" visible="yes" active="yes"/>
 <layer number="93" name="Pins" color="2" fill="1" visible="no" active="yes"/>
@@ -53,6 +57,31 @@
 <layer number="96" name="Values" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="97" name="Info" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="98" name="Guide" color="6" fill="1" visible="yes" active="yes"/>
+<layer number="100" name="Hidden_Layer" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="101" name="Patch_Top" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="102" name="Vscore" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="103" name="tMap" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="104" name="Name" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="105" name="tPlate" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="106" name="bPlate" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="107" name="Crop" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="116" name="Patch_BOT" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="121" name="_tsilk" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="122" name="_bsilk" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="151" name="HeatSink" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="200" name="200bmp" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="201" name="201bmp" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="202" name="202bmp" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="203" name="203bmp" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="204" name="204bmp" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="205" name="205bmp" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="206" name="206bmp" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="207" name="207bmp" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="208" name="208bmp" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="215" name="ResistanceBottom" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="250" name="Descript" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="251" name="SMDround" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="254" name="cooling" color="7" fill="1" visible="yes" active="yes"/>
 </layers>
 <schematic xreflabel="%F%N/%S.%C%R" xrefpart="/%S.%C%R">
 <libraries>
@@ -3591,6 +3620,181 @@ In this library the device names are the same as the pin names of the symbols, t
 </deviceset>
 </devicesets>
 </library>
+<library name="mount-2">
+<packages>
+<package name="_4/.225-BARE+HEAD_OR_SMALL_NUT">
+<description>1/8" hole without plating for #4 screw&lt;br&gt;
+Includes 0.225" outline for screw head.
+The 0.225" outline will also accomodate a 3/16" (small) #4 nut.
+For standard #4 nuts + tool clearance use the 0.4" outline.&lt;br&gt;
+Note, this outline does not include nut-tool clearance, for that use at least the 0.3" outline. However, this outline is acceptable for screw heads, which require no additional tool clearance, or for nuts accessible from the side, etc.</description>
+<circle x="0" y="0" radius="2.8575" width="0.254" layer="21"/>
+<circle x="0" y="0" radius="2.8575" width="0" layer="39"/>
+<circle x="0" y="0" radius="2.8575" width="0" layer="41"/>
+<text x="2.8575" y="2.8575" size="1.27" layer="25">&gt;NAME</text>
+<text x="2.8575" y="-2.8575" size="1.27" layer="27">&gt;VALUE</text>
+<hole x="0" y="0" drill="3.175"/>
+</package>
+<package name="_4/.250-BARE+STD_WASHER">
+<description>1/8" hole without plating for #4 screw&lt;br&gt;
+Includes 0.250" outline for standard #4 washer.
+For #4 star lock washers or standard size #4 nuts use use the 0.3" outline. 1/4" is a good choice for a screw head + standard washer, but will not provide enough room for a standard nut to turn.</description>
+<circle x="0" y="0" radius="2.8575" width="0.254" layer="51"/>
+<circle x="0" y="0" radius="3.175" width="0.254" layer="21"/>
+<circle x="0" y="0" radius="3.175" width="0" layer="39"/>
+<circle x="0" y="0" radius="3.175" width="0" layer="41"/>
+<circle x="0" y="0" radius="2.8575" width="0.254" layer="51"/>
+<circle x="0" y="0" radius="3.175" width="0.254" layer="21"/>
+<circle x="0" y="0" radius="3.175" width="0" layer="39"/>
+<circle x="0" y="0" radius="3.175" width="0" layer="41"/>
+<text x="2.8575" y="2.8575" size="1.27" layer="25">&gt;NAME</text>
+<text x="2.8575" y="-2.8575" size="1.27" layer="27">&gt;VALUE</text>
+<text x="2.8575" y="2.8575" size="1.27" layer="25">&gt;NAME</text>
+<text x="2.8575" y="-2.8575" size="1.27" layer="27">&gt;VALUE</text>
+<hole x="0" y="0" drill="3.175"/>
+<hole x="0" y="0" drill="3.175"/>
+</package>
+<package name="_4/.300-BARE+STD_NUT_OR_STAR_WASHER">
+<description>1/8" hole without plating for #4 screw&lt;br&gt;
+Includes 0.300" outline for standard #4 nut or star lock washer.
+For standard tool clearance, use the 0.400" outline.&lt;br&gt;
+Note 0.300" is acceptable clearance for a ground-down 3/16" nut driver.</description>
+<wire x1="-1.8331" y1="3.175" x2="1.8331" y2="3.175" width="0.127" layer="51"/>
+<wire x1="1.8331" y1="3.175" x2="3.6662" y2="0" width="0.127" layer="51"/>
+<wire x1="3.6662" y1="0" x2="1.8331" y2="-3.175" width="0.127" layer="51"/>
+<wire x1="1.8331" y1="-3.175" x2="-1.8331" y2="-3.175" width="0.127" layer="51"/>
+<wire x1="-1.8331" y1="-3.175" x2="-3.6661" y2="0" width="0.127" layer="51"/>
+<wire x1="-3.6661" y1="0" x2="-1.8331" y2="3.175" width="0.127" layer="51"/>
+<circle x="0" y="0" radius="2.8575" width="0.254" layer="51"/>
+<circle x="0" y="0" radius="3.81" width="0.254" layer="21"/>
+<circle x="0" y="0" radius="3.81" width="0" layer="41"/>
+<text x="2.8575" y="2.8575" size="1.27" layer="25">&gt;NAME</text>
+<text x="3.175" y="-3.175" size="1.27" layer="27">&gt;VALUE</text>
+<hole x="0" y="0" drill="3.175"/>
+</package>
+<package name="_4/.325-BARE+SMALL_TOOL_CLEARANCE">
+<description>1/8" hole without plating for #4 screw&lt;br&gt;
+Includes 0.325" outline for 3/16" (small) #4 nut-tool. If nut driving is not required, the 0.250" outline may be used.</description>
+<wire x1="-1.8331" y1="3.175" x2="1.8331" y2="3.175" width="0.127" layer="51"/>
+<wire x1="1.8331" y1="3.175" x2="3.6662" y2="0" width="0.127" layer="51"/>
+<wire x1="3.6662" y1="0" x2="1.8331" y2="-3.175" width="0.127" layer="51"/>
+<wire x1="1.8331" y1="-3.175" x2="-1.8331" y2="-3.175" width="0.127" layer="51"/>
+<wire x1="-1.8331" y1="-3.175" x2="-3.6661" y2="0" width="0.127" layer="51"/>
+<wire x1="-3.6661" y1="0" x2="-1.8331" y2="3.175" width="0.127" layer="51"/>
+<circle x="0" y="0" radius="2.8575" width="0.254" layer="51"/>
+<circle x="0" y="0" radius="4.1275" width="0.254" layer="21"/>
+<circle x="0" y="0" radius="4.1275" width="0" layer="39"/>
+<circle x="0" y="0" radius="3.81" width="0" layer="41"/>
+<text x="2.8575" y="2.8575" size="1.27" layer="25">&gt;NAME</text>
+<text x="3.175" y="-3.81" size="1.27" layer="27">&gt;VALUE</text>
+<hole x="0" y="0" drill="3.175"/>
+</package>
+<package name="_4/.400-BARE+STD_TOOL_CLEARANCE">
+<description>1/8" hole without plating for #4 screw&lt;br&gt;
+Includes 0.400" outline for 1/4" (standard) #4 nut-tool. If nut driving is not required, the 0.300" outline may be used.</description>
+<wire x1="-1.8331" y1="3.175" x2="1.8331" y2="3.175" width="0.127" layer="51"/>
+<wire x1="1.8331" y1="3.175" x2="3.6662" y2="0" width="0.127" layer="51"/>
+<wire x1="3.6662" y1="0" x2="1.8331" y2="-3.175" width="0.127" layer="51"/>
+<wire x1="1.8331" y1="-3.175" x2="-1.8331" y2="-3.175" width="0.127" layer="51"/>
+<wire x1="-1.8331" y1="-3.175" x2="-3.6661" y2="0" width="0.127" layer="51"/>
+<wire x1="-3.6661" y1="0" x2="-1.8331" y2="3.175" width="0.127" layer="51"/>
+<circle x="0" y="0" radius="2.8575" width="0.254" layer="51"/>
+<circle x="0" y="0" radius="5.08" width="0.254" layer="21"/>
+<circle x="0" y="0" radius="5.08" width="0" layer="39"/>
+<circle x="0" y="0" radius="3.81" width="0" layer="41"/>
+<text x="4.1275" y="3.4925" size="1.27" layer="25">&gt;NAME</text>
+<text x="4.445" y="-3.81" size="1.27" layer="27">&gt;VALUE</text>
+<hole x="0" y="0" drill="3.175"/>
+</package>
+</packages>
+<symbols>
+<symbol name="HOLE+SCREWHEAD">
+<wire x1="-1.6256" y1="1.8542" x2="1.8796" y2="-1.6002" width="0.254" layer="94"/>
+<wire x1="-1.905" y1="1.6256" x2="1.6256" y2="-1.8796" width="0.254" layer="94"/>
+<wire x1="1.27" y1="0" x2="0" y2="1.27" width="0.254" layer="94" curve="90"/>
+<wire x1="-1.27" y1="0" x2="0" y2="-1.27" width="0.254" layer="94" curve="90"/>
+<circle x="0" y="0" radius="2.54" width="0.254" layer="94"/>
+<text x="1.27" y="2.54" size="1.27" layer="95">&gt;Name</text>
+<text x="2.54" y="-2.54" size="1.27" layer="96">&gt;Value</text>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="_4-BARE_MOUNTING_HOLE">
+<description>1/8" drill hole for #4 screw mount</description>
+<gates>
+<gate name="MT" symbol="HOLE+SCREWHEAD" x="0" y="0"/>
+</gates>
+<devices>
+<device name="/.225" package="_4/.225-BARE+HEAD_OR_SMALL_NUT">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="/.250" package="_4/.250-BARE+STD_WASHER">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="/.300" package="_4/.300-BARE+STD_NUT_OR_STAR_WASHER">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="/.325" package="_4/.325-BARE+SMALL_TOOL_CLEARANCE">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="/.400" package="_4/.400-BARE+STD_TOOL_CLEARANCE">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="frames">
+<description>&lt;b&gt;Frames for Sheet and Layout&lt;/b&gt;</description>
+<packages>
+</packages>
+<symbols>
+<symbol name="A5L-LOC">
+<wire x1="85.09" y1="3.81" x2="85.09" y2="24.13" width="0.1016" layer="94"/>
+<wire x1="85.09" y1="24.13" x2="139.065" y2="24.13" width="0.1016" layer="94"/>
+<wire x1="139.065" y1="24.13" x2="180.34" y2="24.13" width="0.1016" layer="94"/>
+<wire x1="170.18" y1="3.81" x2="170.18" y2="8.89" width="0.1016" layer="94"/>
+<wire x1="170.18" y1="8.89" x2="180.34" y2="8.89" width="0.1016" layer="94"/>
+<wire x1="170.18" y1="8.89" x2="139.065" y2="8.89" width="0.1016" layer="94"/>
+<wire x1="139.065" y1="8.89" x2="139.065" y2="3.81" width="0.1016" layer="94"/>
+<wire x1="139.065" y1="8.89" x2="139.065" y2="13.97" width="0.1016" layer="94"/>
+<wire x1="139.065" y1="13.97" x2="180.34" y2="13.97" width="0.1016" layer="94"/>
+<wire x1="139.065" y1="13.97" x2="139.065" y2="19.05" width="0.1016" layer="94"/>
+<wire x1="139.065" y1="19.05" x2="180.34" y2="19.05" width="0.1016" layer="94"/>
+<wire x1="139.065" y1="19.05" x2="139.065" y2="24.13" width="0.1016" layer="94"/>
+<text x="140.97" y="15.24" size="2.54" layer="94" font="vector">&gt;DRAWING_NAME</text>
+<text x="140.97" y="10.16" size="2.286" layer="94" font="vector">&gt;LAST_DATE_TIME</text>
+<text x="154.305" y="5.08" size="2.54" layer="94" font="vector">&gt;SHEET</text>
+<text x="140.716" y="4.953" size="2.54" layer="94" font="vector">Sheet:</text>
+<frame x1="0" y1="0" x2="184.15" y2="133.35" columns="4" rows="4" layer="94"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="A5L-LOC" prefix="FRAME" uservalue="yes">
+<description>A5L LOC</description>
+<gates>
+<gate name="G$1" symbol="A5L-LOC" x="0" y="0"/>
+</gates>
+<devices>
+<device name="">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -3610,24 +3814,42 @@ In this library the device names are the same as the pin names of the symbols, t
 <part name="C1" library="rcl" deviceset="C-EU" device="C0805"/>
 <part name="C2" library="rcl" deviceset="C-EU" device="C0805"/>
 <part name="SUPPLY1" library="supply2" deviceset="GND" device=""/>
+<part name="FOOT1" library="mount-2" deviceset="_4-BARE_MOUNTING_HOLE" device="/.400"/>
+<part name="FOOT2" library="mount-2" deviceset="_4-BARE_MOUNTING_HOLE" device="/.400"/>
+<part name="FOOT3" library="mount-2" deviceset="_4-BARE_MOUNTING_HOLE" device="/.400"/>
+<part name="FOOT4" library="mount-2" deviceset="_4-BARE_MOUNTING_HOLE" device="/.400"/>
+<part name="FRAME1" library="frames" deviceset="A5L-LOC" device=""/>
 </parts>
 <sheets>
 <sheet>
 <plain>
 </plain>
 <instances>
-<instance part="CONN1" gate="G41" x="10.16" y="38.1" smashed="yes" rot="MR0">
-<attribute name="VALUE" x="0" y="30.48" size="1.778" layer="96" font="vector" rot="MR90"/>
+<instance part="CONN1" gate="G41" x="50.8" y="91.44" smashed="yes" rot="MR0">
+<attribute name="VALUE" x="40.64" y="83.82" size="1.778" layer="96" font="vector" rot="MR90"/>
 </instance>
-<instance part="L1" gate="G$1" x="20.32" y="17.78" rot="R270"/>
-<instance part="L2" gate="G$1" x="30.48" y="35.56"/>
-<instance part="L3" gate="G$1" x="25.4" y="38.1"/>
-<instance part="L4" gate="G$1" x="30.48" y="40.64"/>
-<instance part="L5" gate="G$1" x="22.86" y="43.18"/>
-<instance part="C1" gate="G$1" x="7.62" y="20.32"/>
-<instance part="C2" gate="G$1" x="12.7" y="20.32"/>
-<instance part="SUPPLY1" gate="GND" x="17.78" y="12.7"/>
-<instance part="CONN1" gate="S" x="12.7" y="27.94"/>
+<instance part="L1" gate="G$1" x="60.96" y="63.5" rot="R270"/>
+<instance part="L2" gate="G$1" x="86.36" y="88.9"/>
+<instance part="L3" gate="G$1" x="78.74" y="91.44"/>
+<instance part="L4" gate="G$1" x="86.36" y="93.98"/>
+<instance part="L5" gate="G$1" x="78.74" y="96.52"/>
+<instance part="C1" gate="G$1" x="48.26" y="66.04"/>
+<instance part="C2" gate="G$1" x="53.34" y="66.04"/>
+<instance part="SUPPLY1" gate="GND" x="58.42" y="58.42"/>
+<instance part="CONN1" gate="S" x="53.34" y="81.28" smashed="yes"/>
+<instance part="FOOT1" gate="MT" x="25.4" y="30.48" smashed="yes">
+<attribute name="NAME" x="26.67" y="33.02" size="1.27" layer="95"/>
+</instance>
+<instance part="FOOT2" gate="MT" x="33.02" y="30.48" smashed="yes">
+<attribute name="NAME" x="34.29" y="33.02" size="1.27" layer="95"/>
+</instance>
+<instance part="FOOT3" gate="MT" x="40.64" y="30.48" smashed="yes">
+<attribute name="NAME" x="41.91" y="33.02" size="1.27" layer="95"/>
+</instance>
+<instance part="FOOT4" gate="MT" x="48.26" y="30.48" smashed="yes">
+<attribute name="NAME" x="49.53" y="33.02" size="1.27" layer="95"/>
+</instance>
+<instance part="FRAME1" gate="G$1" x="0" y="0"/>
 </instances>
 <busses>
 </busses>
@@ -3636,64 +3858,64 @@ In this library the device names are the same as the pin names of the symbols, t
 <segment>
 <pinref part="L2" gate="G$1" pin="1"/>
 <pinref part="CONN1" gate="G41" pin="4"/>
-<wire x1="15.24" y1="35.56" x2="25.4" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="55.88" y1="88.9" x2="81.28" y2="88.9" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$3" class="0">
 <segment>
 <pinref part="CONN1" gate="G41" pin="3"/>
 <pinref part="L3" gate="G$1" pin="1"/>
-<wire x1="15.24" y1="38.1" x2="20.32" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="55.88" y1="91.44" x2="73.66" y2="91.44" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$4" class="0">
 <segment>
 <pinref part="CONN1" gate="G41" pin="2"/>
 <pinref part="L4" gate="G$1" pin="1"/>
-<wire x1="15.24" y1="40.64" x2="25.4" y2="40.64" width="0.1524" layer="91"/>
+<wire x1="55.88" y1="93.98" x2="81.28" y2="93.98" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$5" class="0">
 <segment>
 <pinref part="CONN1" gate="G41" pin="1"/>
 <pinref part="L5" gate="G$1" pin="1"/>
-<wire x1="15.24" y1="43.18" x2="17.78" y2="43.18" width="0.1524" layer="91"/>
+<wire x1="55.88" y1="96.52" x2="73.66" y2="96.52" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="GND" class="0">
 <segment>
 <pinref part="C1" gate="G$1" pin="2"/>
 <pinref part="C2" gate="G$1" pin="2"/>
-<wire x1="7.62" y1="15.24" x2="12.7" y2="15.24" width="0.1524" layer="91"/>
+<wire x1="48.26" y1="60.96" x2="53.34" y2="60.96" width="0.1524" layer="91"/>
 <pinref part="L1" gate="G$1" pin="2"/>
-<wire x1="12.7" y1="15.24" x2="20.32" y2="15.24" width="0.1524" layer="91"/>
-<junction x="12.7" y="15.24"/>
+<wire x1="53.34" y1="60.96" x2="60.96" y2="60.96" width="0.1524" layer="91"/>
+<junction x="53.34" y="60.96"/>
 <pinref part="SUPPLY1" gate="GND" pin="GND"/>
-<junction x="20.32" y="15.24"/>
-<wire x1="20.32" y1="15.24" x2="17.78" y2="15.24" width="0.1524" layer="91"/>
+<junction x="60.96" y="60.96"/>
+<wire x1="60.96" y1="60.96" x2="58.42" y2="60.96" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$6" class="0">
 <segment>
 <pinref part="CONN1" gate="G41" pin="5"/>
 <pinref part="L1" gate="G$1" pin="1"/>
-<wire x1="15.24" y1="33.02" x2="20.32" y2="33.02" width="0.1524" layer="91"/>
-<wire x1="20.32" y1="33.02" x2="20.32" y2="22.86" width="0.1524" layer="91"/>
+<wire x1="55.88" y1="86.36" x2="60.96" y2="86.36" width="0.1524" layer="91"/>
+<wire x1="60.96" y1="86.36" x2="60.96" y2="68.58" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$1" class="0">
 <segment>
 <pinref part="CONN1" gate="S" pin="S2"/>
 <pinref part="C2" gate="G$1" pin="1"/>
-<wire x1="12.7" y1="25.4" x2="12.7" y2="22.86" width="0.1524" layer="91"/>
+<wire x1="53.34" y1="78.74" x2="53.34" y2="68.58" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$7" class="0">
 <segment>
 <pinref part="CONN1" gate="S" pin="S1"/>
-<wire x1="10.16" y1="25.4" x2="7.62" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="50.8" y1="78.74" x2="48.26" y2="78.74" width="0.1524" layer="91"/>
 <pinref part="C1" gate="G$1" pin="1"/>
-<wire x1="7.62" y1="25.4" x2="7.62" y2="22.86" width="0.1524" layer="91"/>
+<wire x1="48.26" y1="78.74" x2="48.26" y2="68.58" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
