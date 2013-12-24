@@ -6,9 +6,9 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.025" altunitdist="inch" altunit="inch"/>
+<grid distance="0.01" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.025" altunitdist="inch" altunit="inch"/>
 <layers>
-<layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
+<layer number="1" name="Top" color="4" fill="1" visible="no" active="yes"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
 <layer number="17" name="Pads" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
@@ -39,7 +39,7 @@
 <layer number="43" name="vRestrict" color="2" fill="10" visible="yes" active="yes"/>
 <layer number="44" name="Drills" color="7" fill="1" visible="no" active="yes"/>
 <layer number="45" name="Holes" color="7" fill="1" visible="no" active="yes"/>
-<layer number="46" name="Milling" color="3" fill="1" visible="no" active="yes"/>
+<layer number="46" name="Milling" color="3" fill="1" visible="yes" active="yes"/>
 <layer number="47" name="Measures" color="7" fill="1" visible="no" active="yes"/>
 <layer number="48" name="Document" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="49" name="Reference" color="7" fill="1" visible="yes" active="yes"/>
@@ -111,8 +111,6 @@
 <pad name="5" x="1.6" y="0.6" drill="0.7" diameter="1.27"/>
 <pad name="2" x="-0.8" y="-0.6" drill="0.7" diameter="1.27"/>
 <pad name="4" x="0.8" y="-0.6" drill="0.7" diameter="1.27"/>
-<smd name="SLT1" x="-4.25" y="0" dx="1.8" dy="4.5" layer="1" roundness="100" rot="R180" cream="no"/>
-<smd name="SLT2" x="4.25" y="0" dx="1.8" dy="4.5" layer="1" roundness="100" rot="R180" cream="no"/>
 <wire x1="-4.25" y1="1.35" x2="-4.25" y2="-1.35" width="1" layer="46"/>
 <wire x1="4.25" y1="1.35" x2="4.25" y2="-1.35" width="1" layer="46"/>
 <wire x1="-9.5" y1="-3.78" x2="-9.25" y2="-3.78" width="0.3048" layer="51"/>
@@ -128,6 +126,8 @@
 <wire x1="-9.25" y1="2" x2="9.25" y2="2" width="0.127" layer="51"/>
 <wire x1="9.25" y1="2" x2="9.25" y2="-3.78" width="0.127" layer="51"/>
 <text x="-3" y="3" size="1.27" layer="51">&gt;NAME</text>
+<pad name="SHLD@1" x="-4.25" y="0" drill="1" diameter="2.25" shape="long" rot="R270"/>
+<pad name="SHLD@2" x="4.25" y="0" drill="1" diameter="2.25" shape="long" rot="R270"/>
 </package>
 <package name="R0805">
 <description>&lt;b&gt;RESISTOR&lt;/b&gt;&lt;p&gt;
@@ -1483,73 +1483,120 @@ design rules under a new name.</description>
 </pass>
 </autorouter>
 <elements>
-<element name="CONN1" library="dxwifi" package="RUGGEDUSB" value="MINI-USB_SHIELD" x="5.08" y="25.4" rot="R270"/>
-<element name="L1" library="dxwifi" package="R0805" value="" x="13.97" y="33.02" rot="MR180"/>
-<element name="L4" library="dxwifi" package="R0805" value="" x="12.7" y="29.21" rot="MR0"/>
-<element name="L3" library="dxwifi" package="R0805" value="" x="12.7" y="26.67" rot="MR0"/>
-<element name="L2" library="dxwifi" package="R0805" value="" x="11.43" y="22.86" rot="MR180"/>
-<element name="C1" library="rcl" package="C0805" value="" x="5.08" y="34.29" rot="MR270"/>
-<element name="C2" library="rcl" package="C0805" value="" x="5.08" y="16.51" rot="MR90"/>
-<element name="FOOT1" library="mount-2" package="_4/.400-BARE+STD_TOOL_CLEARANCE" value="_4-BARE_MOUNTING_HOLE/.400" x="7.62" y="45.72" smashed="yes"/>
-<element name="FOOT2" library="mount-2" package="_4/.400-BARE+STD_TOOL_CLEARANCE" value="_4-BARE_MOUNTING_HOLE/.400" x="6.35" y="7.62" smashed="yes"/>
+<element name="CONN1" library="dxwifi" package="RUGGEDUSB" value="MINI-USB_SHIELD" x="3.81" y="25.4" smashed="yes" rot="R270"/>
+<element name="L1" library="dxwifi" package="R0805" value="" x="7.366" y="16.256" rot="MR270"/>
+<element name="L4" library="dxwifi" package="R0805" value="" x="19.558" y="20.828" smashed="yes" rot="MR90">
+<attribute name="NAME" x="19.05" y="23.876" size="1.27" layer="26" rot="MR90"/>
+<attribute name="VALUE" x="17.272" y="20.066" size="1.27" layer="28" rot="MR90"/>
+</element>
+<element name="L3" library="dxwifi" package="R0805" value="" x="21.082" y="17.272" smashed="yes" rot="MR0">
+<attribute name="NAME" x="25.4" y="16.764" size="1.27" layer="26" rot="MR0"/>
+<attribute name="VALUE" x="21.844" y="14.986" size="1.27" layer="28" rot="MR0"/>
+</element>
+<element name="L2" library="dxwifi" package="R0805" value="" x="10.922" y="16.764" rot="MR180"/>
+<element name="C1" library="rcl" package="C0805" value="" x="3.81" y="36.83" rot="MR90"/>
+<element name="C2" library="rcl" package="C0805" value="" x="3.81" y="16.256" rot="MR270"/>
+<element name="FOOT1" library="mount-2" package="_4/.400-BARE+STD_TOOL_CLEARANCE" value="_4-BARE_MOUNTING_HOLE/.400" x="6.35" y="45.72" smashed="yes"/>
+<element name="FOOT2" library="mount-2" package="_4/.400-BARE+STD_TOOL_CLEARANCE" value="_4-BARE_MOUNTING_HOLE/.400" x="6.35" y="6.35" smashed="yes"/>
 <element name="FOOT3" library="mount-2" package="_4/.400-BARE+STD_TOOL_CLEARANCE" value="_4-BARE_MOUNTING_HOLE/.400" x="80.01" y="6.35" smashed="yes"/>
 <element name="FOOT4" library="mount-2" package="_4/.400-BARE+STD_TOOL_CLEARANCE" value="_4-BARE_MOUNTING_HOLE/.400" x="80.01" y="45.72" smashed="yes"/>
-<element name="WIFI" library="dxwifi" package="ZCN-722M" value="ZCN-722M" x="52.07" y="21.59"/>
+<element name="WIFI" library="dxwifi" package="ZCN-722M" value="ZCN-722M" x="44.45" y="19.304"/>
 </elements>
 <signals>
-<signal name="N$3">
+<signal name="D+OUT">
 <contactref element="CONN1" pad="3"/>
 <contactref element="L4" pad="1"/>
-<wire x1="5.68" y1="25.4" x2="13.55" y2="29.21" width="0" layer="19" extent="1-1"/>
+<wire x1="4.41" y1="25.4" x2="8.636" y2="25.4" width="0.3048" layer="16"/>
+<wire x1="8.636" y1="25.4" x2="12.954" y2="20.574" width="0.3048" layer="16"/>
+<wire x1="12.954" y1="20.574" x2="17.272" y2="20.574" width="0.3048" layer="16"/>
+<wire x1="17.272" y1="20.574" x2="18.034" y2="19.812" width="0.3048" layer="16"/>
+<wire x1="18.034" y1="19.812" x2="19.392" y2="19.812" width="0.3048" layer="16"/>
+<wire x1="19.392" y1="19.812" x2="19.558" y2="19.978" width="0.3048" layer="16"/>
 </signal>
-<signal name="N$4">
+<signal name="D-OUT">
 <contactref element="CONN1" pad="2"/>
 <contactref element="L3" pad="1"/>
-<wire x1="4.48" y1="26.2" x2="13.55" y2="26.67" width="0" layer="19" extent="1-1"/>
+<wire x1="3.21" y1="26.2" x2="3.21" y2="27.594" width="0.3048" layer="16"/>
+<wire x1="3.21" y1="27.594" x2="3.81" y2="28.194" width="0.3048" layer="16"/>
+<wire x1="3.81" y1="28.194" x2="8.89" y2="28.194" width="0.3048" layer="16"/>
+<wire x1="8.89" y1="28.194" x2="13.208" y2="23.114" width="0.3048" layer="16"/>
+<wire x1="13.208" y1="23.114" x2="21.082" y2="23.114" width="0.3048" layer="16"/>
+<wire x1="21.082" y1="23.114" x2="21.844" y2="22.352" width="0.3048" layer="16"/>
+<wire x1="21.844" y1="22.352" x2="21.844" y2="17.36" width="0.3048" layer="16"/>
+<wire x1="21.844" y1="17.36" x2="21.932" y2="17.272" width="0.3048" layer="16"/>
 </signal>
-<signal name="N$5">
+<signal name="VCC_OUT">
 <contactref element="CONN1" pad="1"/>
 <contactref element="L2" pad="1"/>
-<wire x1="5.68" y1="27" x2="10.58" y2="22.86" width="0" layer="19" extent="1-1"/>
+<wire x1="10.072" y1="16.764" x2="10.072" y2="21.424" width="0.6096" layer="16"/>
+<wire x1="10.072" y1="21.424" x2="7.874" y2="23.622" width="0.6096" layer="16"/>
+<via x="7.874" y="23.622" extent="1-16" drill="0.7" diameter="1.27"/>
+<wire x1="7.874" y1="23.622" x2="7.874" y2="26.924" width="0.6096" layer="1"/>
+<via x="7.874" y="26.924" extent="1-16" drill="0.7" diameter="1.27"/>
+<wire x1="7.874" y1="26.924" x2="7.798" y2="27" width="0.6096" layer="16"/>
+<wire x1="7.798" y1="27" x2="4.41" y2="27" width="0.6096" layer="16"/>
 </signal>
 <signal name="GND">
 <contactref element="C1" pad="2"/>
 <contactref element="C2" pad="2"/>
 <contactref element="L1" pad="2"/>
 <contactref element="WIFI" pad="5"/>
-<wire x1="14.82" y1="33.02" x2="22.86" y2="26.67" width="0" layer="19" extent="1-1"/>
-<wire x1="5.08" y1="17.46" x2="14.82" y2="33.02" width="0" layer="19" extent="1-1"/>
-<wire x1="5.08" y1="33.34" x2="5.08" y2="17.46" width="0" layer="19" extent="1-1"/>
+<polygon width="0.4064" layer="16" orphans="yes">
+<vertex x="0" y="41.91" curve="-90"/>
+<vertex x="10.16" y="52.07"/>
+<vertex x="76.2" y="52.07" curve="-90"/>
+<vertex x="86.36" y="41.91"/>
+<vertex x="86.36" y="8.89" curve="-97.62815"/>
+<vertex x="76.2" y="0"/>
+<vertex x="10.16" y="0" curve="-90"/>
+<vertex x="0" y="10.16"/>
+</polygon>
+<polygon width="0.4064" layer="1">
+<vertex x="0" y="41.91" curve="-90"/>
+<vertex x="10.16" y="52.07"/>
+<vertex x="76.2" y="52.07" curve="-90"/>
+<vertex x="86.36" y="41.91"/>
+<vertex x="86.36" y="10.16" curve="-90"/>
+<vertex x="76.2" y="0"/>
+<vertex x="10.16" y="0" curve="-90"/>
+<vertex x="0" y="10.16"/>
+</polygon>
 </signal>
-<signal name="N$6">
+<signal name="GNDOUT">
 <contactref element="CONN1" pad="5"/>
 <contactref element="L1" pad="1"/>
-<wire x1="13.12" y1="33.02" x2="5.68" y2="23.8" width="0" layer="19" extent="1-1"/>
+<wire x1="4.41" y1="23.8" x2="5.41" y2="23.8" width="0.6096" layer="16"/>
+<wire x1="5.41" y1="23.8" x2="7.366" y2="21.844" width="0.6096" layer="16"/>
+<wire x1="7.366" y1="21.844" x2="7.366" y2="17.106" width="0.6096" layer="16"/>
 </signal>
-<signal name="N$1">
-<contactref element="CONN1" pad="SLT2"/>
+<signal name="SHEILDGND1">
+<contactref element="CONN1" pad="SHLD@2"/>
 <contactref element="C2" pad="1"/>
-<wire x1="5.08" y1="15.56" x2="5.08" y2="21.15" width="0" layer="19" extent="1-1"/>
+<wire x1="3.81" y1="17.206" x2="3.81" y2="21.15" width="0.6096" layer="16"/>
 </signal>
-<signal name="N$7">
-<contactref element="CONN1" pad="SLT1"/>
+<signal name="SHIELDGND2">
+<contactref element="CONN1" pad="SHLD@1"/>
 <contactref element="C1" pad="1"/>
-<wire x1="5.08" y1="35.24" x2="5.08" y2="29.65" width="0" layer="19" extent="1-1"/>
+<wire x1="3.81" y1="35.88" x2="3.81" y2="29.65" width="0.6096" layer="16"/>
 </signal>
-<signal name="N$8">
+<signal name="VCC">
 <contactref element="L2" pad="2"/>
 <contactref element="WIFI" pad="2"/>
-<wire x1="12.28" y1="22.86" x2="22.86" y2="19.05" width="0" layer="19" extent="1-1"/>
+<wire x1="11.772" y1="16.764" x2="15.24" y2="16.764" width="0.6096" layer="16"/>
 </signal>
-<signal name="N$9">
+<signal name="D-">
 <contactref element="L3" pad="2"/>
 <contactref element="WIFI" pad="3"/>
-<wire x1="11.85" y1="26.67" x2="22.86" y2="21.59" width="0" layer="19" extent="1-1"/>
+<wire x1="20.232" y1="17.272" x2="19.304" y2="17.272" width="0.3048" layer="16"/>
+<wire x1="19.304" y1="17.272" x2="17.272" y2="19.304" width="0.3048" layer="16"/>
+<wire x1="17.272" y1="19.304" x2="15.24" y2="19.304" width="0.3048" layer="16"/>
 </signal>
-<signal name="N$10">
+<signal name="D+">
 <contactref element="L4" pad="2"/>
 <contactref element="WIFI" pad="4"/>
-<wire x1="11.85" y1="29.21" x2="22.86" y2="24.13" width="0" layer="19" extent="1-1"/>
+<wire x1="19.558" y1="21.678" x2="17.946" y2="21.678" width="0.3048" layer="16"/>
+<wire x1="17.946" y1="21.678" x2="17.78" y2="21.844" width="0.3048" layer="16"/>
+<wire x1="17.78" y1="21.844" x2="15.24" y2="21.844" width="0.3048" layer="16"/>
 </signal>
 </signals>
 </board>

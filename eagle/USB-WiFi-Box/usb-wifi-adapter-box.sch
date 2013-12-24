@@ -93,8 +93,6 @@
 <pad name="5" x="1.6" y="0.6" drill="0.7" diameter="1.27"/>
 <pad name="2" x="-0.8" y="-0.6" drill="0.7" diameter="1.27"/>
 <pad name="4" x="0.8" y="-0.6" drill="0.7" diameter="1.27"/>
-<smd name="SLT1" x="-4.25" y="0" dx="1.8" dy="4.5" layer="1" roundness="100" rot="R180" cream="no"/>
-<smd name="SLT2" x="4.25" y="0" dx="1.8" dy="4.5" layer="1" roundness="100" rot="R180" cream="no"/>
 <wire x1="-4.25" y1="1.35" x2="-4.25" y2="-1.35" width="1" layer="46"/>
 <wire x1="4.25" y1="1.35" x2="4.25" y2="-1.35" width="1" layer="46"/>
 <wire x1="-9.5" y1="-3.78" x2="-9.25" y2="-3.78" width="0.3048" layer="51"/>
@@ -110,6 +108,8 @@
 <wire x1="-9.25" y1="2" x2="9.25" y2="2" width="0.127" layer="51"/>
 <wire x1="9.25" y1="2" x2="9.25" y2="-3.78" width="0.127" layer="51"/>
 <text x="-3" y="3" size="1.27" layer="51">&gt;NAME</text>
+<pad name="SHLD@1" x="-4.25" y="0" drill="1" diameter="2.25" shape="long" rot="R270"/>
+<pad name="SHLD@2" x="4.25" y="0" drill="1" diameter="2.25" shape="long" rot="R270"/>
 </package>
 <package name="R0805">
 <description>&lt;b&gt;RESISTOR&lt;/b&gt;&lt;p&gt;
@@ -280,8 +280,8 @@ chip</description>
 <connect gate="G41" pin="3" pad="3"/>
 <connect gate="G41" pin="4" pad="4"/>
 <connect gate="G41" pin="5" pad="5"/>
-<connect gate="S" pin="S1" pad="SLT1"/>
-<connect gate="S" pin="S2" pad="SLT2"/>
+<connect gate="S" pin="S1" pad="SHLD@1"/>
+<connect gate="S" pin="S2" pad="SHLD@2"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -3966,21 +3966,21 @@ Includes 0.400" outline for 1/4" (standard) #4 nut-tool. If nut driving is not r
 <busses>
 </busses>
 <nets>
-<net name="N$3" class="0">
+<net name="D+OUT" class="0">
 <segment>
 <pinref part="CONN1" gate="G41" pin="3"/>
 <pinref part="L4" gate="G$1" pin="1"/>
 <wire x1="58.42" y1="88.9" x2="81.28" y2="88.9" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$4" class="0">
+<net name="D-OUT" class="0">
 <segment>
 <pinref part="CONN1" gate="G41" pin="2"/>
 <pinref part="L3" gate="G$1" pin="1"/>
 <wire x1="58.42" y1="91.44" x2="91.44" y2="91.44" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$5" class="0">
+<net name="VCC_OUT" class="0">
 <segment>
 <pinref part="CONN1" gate="G41" pin="1"/>
 <pinref part="L2" gate="G$1" pin="1"/>
@@ -4006,7 +4006,7 @@ Includes 0.400" outline for 1/4" (standard) #4 nut-tool. If nut driving is not r
 <wire x1="119.38" y1="86.36" x2="119.38" y2="58.42" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$6" class="0">
+<net name="GNDOUT" class="0">
 <segment>
 <pinref part="CONN1" gate="G41" pin="5"/>
 <pinref part="L1" gate="G$1" pin="1"/>
@@ -4014,14 +4014,14 @@ Includes 0.400" outline for 1/4" (standard) #4 nut-tool. If nut driving is not r
 <wire x1="63.5" y1="83.82" x2="63.5" y2="66.04" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$1" class="0">
+<net name="SHEILDGND1" class="0">
 <segment>
 <pinref part="CONN1" gate="S" pin="S2"/>
 <pinref part="C2" gate="G$1" pin="1"/>
 <wire x1="55.88" y1="76.2" x2="55.88" y2="66.04" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$7" class="0">
+<net name="SHIELDGND2" class="0">
 <segment>
 <pinref part="CONN1" gate="S" pin="S1"/>
 <wire x1="53.34" y1="76.2" x2="50.8" y2="76.2" width="0.1524" layer="91"/>
@@ -4029,21 +4029,21 @@ Includes 0.400" outline for 1/4" (standard) #4 nut-tool. If nut driving is not r
 <wire x1="50.8" y1="76.2" x2="50.8" y2="66.04" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$8" class="0">
+<net name="VCC" class="0">
 <segment>
 <pinref part="L2" gate="G$1" pin="2"/>
 <pinref part="WIFI" gate="G$1" pin="VCC"/>
 <wire x1="88.9" y1="93.98" x2="121.92" y2="93.98" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$9" class="0">
+<net name="D-" class="0">
 <segment>
 <pinref part="L3" gate="G$1" pin="2"/>
 <pinref part="WIFI" gate="G$1" pin="D-"/>
 <wire x1="99.06" y1="91.44" x2="121.92" y2="91.44" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$10" class="0">
+<net name="D+" class="0">
 <segment>
 <pinref part="L4" gate="G$1" pin="2"/>
 <pinref part="WIFI" gate="G$1" pin="D+"/>
