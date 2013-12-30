@@ -4626,8 +4626,8 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <part name="L4" library="dxwifi" deviceset="INDUCTOR-BEAD" device=""/>
 <part name="L3" library="dxwifi" deviceset="INDUCTOR-BEAD" device=""/>
 <part name="L2" library="dxwifi" deviceset="INDUCTOR-BEAD" device=""/>
-<part name="C1" library="rcl" deviceset="C-EU" device="C0805"/>
-<part name="C2" library="rcl" deviceset="C-EU" device="C0805"/>
+<part name="C1" library="rcl" deviceset="C-EU" device="C0805" value="0.1u"/>
+<part name="C2" library="rcl" deviceset="C-EU" device="C0805" value="0.1u"/>
 <part name="SUPPLY1" library="supply2" deviceset="GND" device=""/>
 <part name="FOOT1" library="mount-2" deviceset="_4-BARE_MOUNTING_HOLE" device="/.400"/>
 <part name="FOOT2" library="mount-2" deviceset="_4-BARE_MOUNTING_HOLE" device="/.400"/>
