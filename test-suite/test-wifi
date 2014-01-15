@@ -7,7 +7,7 @@ import time
 parser = argparse.ArgumentParser(prog="dxwifi",
     description="DxWifi Test-Suite")
 
-parser.add_argument("-n", "--restartnetworkmanager",
+parser.add_argument("-n", "--networkmanager",
     action="store_true", required=False,
     help="Restarts network manager")
 
@@ -55,7 +55,8 @@ def test_root():
         exit("You must have root privileges, or else.")
 
 def set_internet():
-    subprocess.call(["bash", "set_internet.sh"])
+    stopclick()
+    subprocess.call(["start", "network-manager"])
 
 def stopclick():
     subprocess.call(["click-uninstall"])
@@ -116,7 +117,14 @@ def set_listen():
 if __name__ == "__main__":
     test_click()
     test_root()
-    if args.get("click") is not None:
+
+    if args["stopclick"]:
+        stopclick()
+
+    elif args["networkmanager"]:
+        set_internet()
+
+    elif args.get("click") is not None:
         if args.get("interface") is not None and
             args.get("ip") is not None and
             args.get("essid") is not None:
@@ -135,5 +143,3 @@ if __name__ == "__main__":
             set_listen()
         else:
             set_listen()
-
-
