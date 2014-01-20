@@ -3,6 +3,19 @@ import argparse
 import subprocess
 import os
 import time
+import ConfigParser
+
+config = ConfigParser.RawConfigParser()
+config.read('test-suite.cfg')
+dev = config.get('interface', 'dev')
+ip = config.get('interface', 'ip')
+essid = config.get('interface', 'essid')
+dumpfile = config.get('iofiles', 'dumpfile')
+clickfile = config.get('iofiles', 'clickfile')
+series = config.getint('test', 'series')
+sendsperseries = config.getint('test', 'sendsperseries')
+firstorsecond = config.get('test', 'firstorsecond')
+runname = config.get('test', 'runname')
 
 parser = argparse.ArgumentParser(prog="dxwifi",
     description="DxWifi Test-Suite")
@@ -11,20 +24,20 @@ parser.add_argument("-n", "--networkmanager",
     action="store_true", required=False,
     help="Restarts network manager")
 
-parser.add_argument("-l", "--listen", metavar="OUTPUT", action="store", nargs="?",
-    required=False, help="Writes to .pcap file, .txt, or no arg for stdout")
+parser.add_argument("-f", "--file",
+    action="store_true", required=False,
+    help="Writes recieved packets to .pcap or .txt file")
+
+parser.add_argument("-l", "--listen",
+    action="store_true", required=False,
+    help="Writes recieved packets to stdout")
 
 parser.add_argument("-c", "--click", metavar="FILE.click", action="store",
     required=False, help="Specify a .click file to load")
 
-parser.add_argument("-f", "--interface", metavar="INTERFACE", action="store",
-    required=False, help="Network interface")
-
-parser.add_argument("-i", "--ip", metavar="IP", action="store",
-    required=False, help="IP to assume while transmitting")
-
-parser.add_argument("-e", "--essid", metavar="ESSID", action="store",
-    required=False, help="ESSID to assume while transmitting")
+parser.add_argument("-t", "--transmit",
+    action="store_true", required=False,
+    help="Installs .click file from .cfg")
 
 parser.add_argument("-a", "--automate",
     action="store_true", required=False,
@@ -33,14 +46,6 @@ parser.add_argument("-a", "--automate",
 parser.add_argument("-s", "--stopclick",
     action="store_true", required=False,
     help="Uninstalls click")
-
-parser.add_argument("--first",
-    action="store_true", required=False,
-    help="This station transmits first")
-
-parser.add_argument("--second",
-    action="store_true", required=False,
-    help="This station tranmits second")
 
 args = vars(parser.parse_args())
 
@@ -63,56 +68,120 @@ def stopclick():
 
 def card_down():
     stopclick()
-    subprocess.call(["ifconfig", args["interface"], "down"])
+    subprocess.call(["ifconfig", dev, "down"])
         
 def card_up():
     stopclick()
-    subprocess.call(["ifconfig", args["interface"], "up"])
+    subprocess.call(["ifconfig", dev, "up"])
     
 def click_config():
     card_down()
+    subprocess.call(["stop", "network-manager"])
 
     try:
-        subprocess.call(["iwconfig", args["interface"], "mode",
-            "ad-hoc", "essid", args["essid"])
+        subprocess.call(["iwconfig", dev, "mode",
+            "ad-hoc", "essid", essid])
     except:
         exit()
 
-    if "." in args["ip"]:
-        ip = args["ip"]
-    else:
-        ip = "192.168.0." + args["ip"]
     try:
-        subprocess.call(["ifconfig", args["interface"], ip)
+        subprocess.call(["ifconfig", dev, ip])
     except:
         exit()
 
     time.sleep(10)
 
+def delta_time(num_seconds, start_time):
+    while(int(time.time()) - start_time < num_seconds):
+        time.sleep(1)
+    return
+
+def auto():
+    while(int(time.time()) % 10 != 0):
+        time.sleep(1)
+    start_time = int(time.time())
+
+    try:
+        os.mkdir("./" + runname)
+    except:
+        print "107 exception"
+
+    print "109"
+
+    for y in range(0, series):
+        print "112"
+
+        try:
+            os.mkdir("./" + runname + "/" + firstorsecond + "_series" + str(y))
+        except:
+            print "117 exception"
+ 
+        series_dir = "./" + runname + "/" + firstorsecond + "_series" + str(y) + "/"
+        for x in range(0, sendsperseries):
+            if(firstorsecond == "first"):
+                if(x == 0):
+                    click_config()
+                    transmit()
+                delta_time((30 + (15 * y)) + 2, start_time)
+                transmit()
+
+            if(firstorsecond == "second"):
+                if(x == 0):
+                    listen_config()
+                tcpdmp = subprocess.Popen(["tcpdump", "-ennvvvKXXSi", dev,
+                "port 12121", "-w", series_dir + "test" + str(x) + ".pcap"])
+                delta_time(30 + (15 * y), start_time)
+                subprocess.Popen.kill(tcpdmp)
+
+        for x in range(0, sendsperseries):
+            if(firstorsecond == "second"):
+                if(x == 0):
+                    click_config()
+                    transmit()
+                delta_time((30 + (15 * y)) + 2, start_time)
+                transmit()
+
+            if(firstorsecond == "first"):
+                if(x == 0):
+                    listen_config()
+                tcpdmp = subprocess.Popen(["tcpdump", "-ennvvvKXXSi", dev,
+                "port 12121", "-w", series_dir + "test" + str(x) + ".pcap"])
+                delta_time(30 + (15 * y), start_time)
+                subprocess.Popen.kill(tcpdmp)
+
+
 def set_click():
     stopclick()
-    subprocess.call(["click-install", args["click"])
+    subprocess.call(["click-install", args["click"]])
+
+def transmit():
+    stopclick()
+    subprocess.call(["click-install", clickfile])
 
 def listen_config():
+    stopclick()
+    subprocess.call(["stop", "network-manager"])
     card_down()
-    subprocess.call(["iwconfig", args["interface"] "mode", "monitor"])
+    subprocess.call(["iwconfig", dev, "mode", "monitor"])
     card_up()
-    subprocess.call(["iwconfig", args["interface"] "channel", "2.412"])
+    subprocess.call(["iwconfig", dev, "channel", "2.412"])
     
 def set_listen():
     stopclick()
-    dumpfile = args.get("listen")
 
-    if dumpfile is not None:
-        if dumpfile.endswith(".pcap"):
-            subprocess.call(["tcpdump", "-ennvvvKXXSi", args["interface"],
-            "port", "12121", "-w", "./" + dumpfile])
-        elif dumpfile.endswith(".txt"):
-            subprocess.call(["tcpdump", "-ennvvvKXXSi", args["interface"],
-            "port", "12121", ">", "./" + dumpfile])
-    else:
-        subprocess.call(["tcpdump", "-enntKXXSi", args["interface"],
-        "port", "12121"])
+    tcpdmp = subprocess.Popen(["tcpdump", "-enntKXXSi", dev,
+    "port", "12121"])
+
+
+def infile():
+    stopclick()
+
+    if dumpfile.endswith(".pcap"):
+        subprocess.call(["tcpdump", "-ennvvvKXXSi", dev, 
+        "port", "12121", "-w", "./" + dumpfile])
+    elif dumpfile.endswith(".txt"):
+        subprocess.call(["tcpdump", "-ennvvvKXXSi", dev,
+        "port", "12121", ">", "./" + dumpfile])
 
 if __name__ == "__main__":
     test_click()
@@ -124,22 +193,25 @@ if __name__ == "__main__":
     elif args["networkmanager"]:
         set_internet()
 
-    elif args.get("click") is not None:
-        if args.get("interface") is not None and
-            args.get("ip") is not None and
-            args.get("essid") is not None:
-            click_config()
-            set_click()
-        elif args.get("interface") is None and
-            args.get("ip") is None and
-            args.get("essid") is None:
-            set_click()
-        else:
-            exit("You dun goofed. -i, -e, -f are all or nothing.")
+    elif args["listen"]:
+        listen_config()
+        set_listen()
 
-    elif args.get("listen") is not None:
-        if args.get("interface") is not None:
-            listen_config() 
-            set_listen()
-        else:
-            set_listen()
+    elif args["file"]:
+        listen_config()
+        infile()
+
+    elif args["transmit"]:
+        click_config()
+        transmit()
+
+    elif args.get("automate"):
+        auto()
+
+    elif args.get("click") is not None:
+        click_config()
+        set_click()
+    
+    else:
+        print "Please specify a valid argument, see --help"
+
