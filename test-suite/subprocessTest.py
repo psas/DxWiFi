@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python
 import os
 import subprocess
 import time
@@ -9,11 +9,17 @@ import time
 
 #this works
 
-os.mkdir( "./runname")
-os.mkdir( "./runname/first")
+try:
+    os.mkdir( "./runname")
+except:
+    pass
+try:
+    os.mkdir( "./runname/first")
+except:
+    pass
 series_dir = "./runname/first/test4.pcap"
 print "this works Path = "+ series_dir
-tcpdmp = subprocess.Popen(["tcpdump", "-i", "en1", "-w", series_dir])
+tcpdmp = subprocess.Popen(["tcpdump", "-i", "wlan0", "-w", series_dir])
 
 time.sleep(4)
 
@@ -23,7 +29,7 @@ subprocess.Popen.kill(tcpdmp)
 #also works
 series_dir = "./runname/first/test5.pcap"
 print "will it work again?"+ series_dir
-tcpdmp = subprocess.Popen(["tcpdump", "-i", "en1", "-w", series_dir])
+tcpdmp = subprocess.Popen(["tcpdump", "-i", "wlan0", "-w", series_dir])
 
 time.sleep(4)
 
@@ -37,7 +43,8 @@ subprocess.Popen.kill(tcpdmp)
 series_dir2 = "./runname/first/"
 print "this doesnt"+ series_dir2
 
-tcpdmp = subprocess.Popen(["tcpdump", "-i", "en1", "-w", series_dir2 + "test5.pcap"])
+tcpdmp = subprocess.Popen(["tcpdump", "-i", "wlan0", "-w", series_dir2 + "/test6.pcap"])
 
+time.sleep(4)
 
 subprocess.Popen.kill(tcpdmp)

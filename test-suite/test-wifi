@@ -104,17 +104,13 @@ def auto():
     try:
         os.mkdir("./" + runname)
     except:
-        print "107 exception"
-
-    print "109"
+        pass
 
     for y in range(0, series):
-        print "112"
-
         try:
             os.mkdir("./" + runname + "/" + firstorsecond + "_series" + str(y))
         except:
-            print "117 exception"
+            pass
  
         series_dir = "./" + runname + "/" + firstorsecond + "_series" + str(y) + "/"
         for x in range(0, sendsperseries):
@@ -128,8 +124,9 @@ def auto():
             if(firstorsecond == "second"):
                 if(x == 0):
                     listen_config()
+                to_write = series_dir + "test" + str(x) + ".pcap"
                 tcpdmp = subprocess.Popen(["tcpdump", "-ennvvvKXXSi", dev,
-                "port 12121", "-w", series_dir + "test" + str(x) + ".pcap"])
+                "port 12121", "-w", to_write])
                 delta_time(30 + (15 * y), start_time)
                 subprocess.Popen.kill(tcpdmp)
 
@@ -144,8 +141,9 @@ def auto():
             if(firstorsecond == "first"):
                 if(x == 0):
                     listen_config()
+                to_write = series_dir + "test" + str(x) + ".pcap"
                 tcpdmp = subprocess.Popen(["tcpdump", "-ennvvvKXXSi", dev,
-                "port 12121", "-w", series_dir + "test" + str(x) + ".pcap"])
+                "port 12121", "-w", to_write])
                 delta_time(30 + (15 * y), start_time)
                 subprocess.Popen.kill(tcpdmp)
 
@@ -169,7 +167,7 @@ def listen_config():
 def set_listen():
     stopclick()
 
-    tcpdmp = subprocess.Popen(["tcpdump", "-enntKXXSi", dev,
+    tcpdmp = subprocess.call(["tcpdump", "-enntKXXSi", dev,
     "port", "12121"])
 
 
