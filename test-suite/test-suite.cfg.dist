@@ -6,8 +6,8 @@ firstorsecond: first
 runname: fake10k
 
 [interface]
-dev: wlan2
-ip: 192.168.0.5
+dev: wlan4
+ip: 192.168.0.10
 essid: rocket_dont_associate
 
 
