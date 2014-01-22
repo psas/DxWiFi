@@ -152,7 +152,7 @@ def auto():
                     delta_time(20)
                 to_write = series_dir + "test" + str(x) + ".pcap"
                 print str(int(time.time()) % 60) + ": " +  "tcpdump", "-ennvvKXXSi", dev, "port", "12121", "-w", to_write
-                tcpdmp = subprocess.Popen(["tcpdump", "-ennvvvKXXSi", dev,
+                tcpdmp = subprocess.Popen(["tcpdump", "-s 0", "-ennvvvKXXSi", dev,
                 "port 12121", "-w", to_write])
                 print str(int(time.time()) % 60) + ": " + "sleep(15)"
                 time.sleep(15)
@@ -186,7 +186,7 @@ def auto():
                     print str(int(time.time()) % 60) + ": " + "delta_time(20)"
                     delta_time(20)
                 to_write = series_dir + "test" + str(x) + ".pcap"
-                print str(int(time.time()) % 60) + ": " +  "tcpdump", "-ennvvKXXSi", dev, "port", "12121", "-w", to_write
+                print str(int(time.time()) % 60) + ": " +  "tcpdump", "-s 0", "-ennvvKXXSi", dev, "port", "12121", "-w", to_write
                 tcpdmp = subprocess.Popen(["tcpdump", "-ennvvvKXXSi", dev,
                 "port 12121", "-w", to_write])
                 print str(int(time.time()) % 60) + ": " + "sleep(15)"
@@ -234,7 +234,7 @@ def set_listen():
     print str(int(time.time()) % 60) + ": " +  "stopclick()"
     stopclick()
 
-    print str(int(time.time()) % 60) + ": " +  "tcpdump", "-enntKXXSi", dev, "port", "12121"
+    print str(int(time.time()) % 60) + ": " +  "tcpdump", "-s 0", "-enntKXXSi", dev, "port", "12121"
     tcpdmp = subprocess.call(["tcpdump", "-enntKXXSi", dev,
     "port", "12121"])
 
