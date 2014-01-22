@@ -1,10 +1,12 @@
 #!/usr/bin/env python
+import signal
 import argparse
 import subprocess
 import os
 import time
 import ConfigParser
 
+signal.signal(signal.SIGCHLD, signal.SIG_IGN)
 config = ConfigParser.RawConfigParser()
 config.read('test-suite.cfg')
 dev = config.get('interface', 'dev')
@@ -67,106 +69,162 @@ def stopclick():
     subprocess.call(["click-uninstall"])
 
 def card_down():
+    print str(int(time.time()) % 60) + ": " +  "stopclick()"
     stopclick()
+    print str(int(time.time()) % 60) + ": " +  "ifconfig", dev, "down"
     subprocess.call(["ifconfig", dev, "down"])
         
 def card_up():
+    print str(int(time.time()) % 60) + ": " +  "stopclick()"
     stopclick()
+    print str(int(time.time()) % 60) + ": " +  "ifconfig", dev, "down"
     subprocess.call(["ifconfig", dev, "up"])
     
 def click_config():
+    print str(int(time.time()) % 60) + ": " +  "stopclick()"
+    stopclick()
+    print str(int(time.time()) % 60) + ": " + "card_down()"
     card_down()
-    subprocess.call(["stop", "network-manager"])
 
     try:
+        print str(int(time.time()) % 60) + ": " +  "iwconfig", dev, "mode", "ad-hoc", "essid", essid
         subprocess.call(["iwconfig", dev, "mode",
             "ad-hoc", "essid", essid])
     except:
         exit()
 
     try:
+        print str(int(time.time()) % 60) + ": " +  "ifconfig", dev, ip
         subprocess.call(["ifconfig", dev, ip])
     except:
         exit()
 
+    print str(int(time.time()) % 60) + ": " + "sleep(10)"
     time.sleep(10)
 
-def delta_time(num_seconds, start_time):
-    while(int(time.time()) - start_time < num_seconds):
+def delta_time(nearest):
+    while(int(time.time()) % nearest):
         time.sleep(1)
     return
 
 def auto():
-    while(int(time.time()) % 10 != 0):
-        time.sleep(1)
-    start_time = int(time.time())
-
-    try:
-        os.mkdir("./" + runname)
-    except:
-        pass
-
     for y in range(0, series):
         try:
             os.mkdir("./" + runname + "/" + firstorsecond + "_series" + str(y))
         except:
             pass
+
+        while(int(time.time()) % 10 != 0):
+            time.sleep(1)
+
+        try:
+            os.mkdir("./" + runname)
+        except:
+            pass
+
  
         series_dir = "./" + runname + "/" + firstorsecond + "_series" + str(y) + "/"
         for x in range(0, sendsperseries):
-            if(firstorsecond == "first"):
+            if firstorsecond == "first":
                 if(x == 0):
+                    print str(int(time.time()) % 60) + ": " +  "click_config()"
                     click_config()
-                    transmit()
-                delta_time((30 + (15 * y)) + 2, start_time)
+                    print str(int(time.time()) % 60) + ": " + "sleep(20)"
+                    delta_time(20)
+                print str(int(time.time()) % 60) + ": " + "sleep(12)"
+                time.sleep(2)
+                print str(int(time.time()) % 60) + ": " + "transmit()"
                 transmit()
+                print str(int(time.time()) % 60) + ": " + "sleep(13)"
+                time.sleep(13)
+                print str(int(time.time()) % 60) + ": " + "delta_time(20)"
+                delta_time(20)
 
-            if(firstorsecond == "second"):
+            if firstorsecond == "second":
                 if(x == 0):
+                    print str(int(time.time()) % 60) + ": " +  "listen_config()"
                     listen_config()
+                    print str(int(time.time()) % 60) + ": " + "sleep(10)"
+                    time.sleep(10)
+                    delta_time(20)
                 to_write = series_dir + "test" + str(x) + ".pcap"
+                print str(int(time.time()) % 60) + ": " +  "tcpdump", "-ennvvKXXSi", dev, "port", "12121", "-w", to_write
                 tcpdmp = subprocess.Popen(["tcpdump", "-ennvvvKXXSi", dev,
                 "port 12121", "-w", to_write])
-                delta_time(30 + (15 * y), start_time)
+                print str(int(time.time()) % 60) + ": " + "sleep(15)"
+                time.sleep(15)
+                print str(int(time.time()) % 60) + ": " + "kill(tcpdmp)"
                 subprocess.Popen.kill(tcpdmp)
+                print str(int(time.time()) % 60) + ": " + "sleep(20)"
+                delta_time(20)
 
         for x in range(0, sendsperseries):
-            if(firstorsecond == "second"):
+            if firstorsecond == "second":
                 if(x == 0):
+                    print str(int(time.time()) % 60) + ": " +  "click_config()"
                     click_config()
-                    transmit()
-                delta_time((30 + (15 * y)) + 2, start_time)
+                    print str(int(time.time()) % 60) + ": " + "delta_time(20)"
+                    delta_time(20)
+                print str(int(time.time()) % 60) + ": " + "sleep(2)"
+                time.sleep(2)
+                print str(int(time.time()) % 60) + ": " + "transmit()"
                 transmit()
+                print str(int(time.time()) % 60) + ": " + "sleep(13)"
+                time.sleep(13)
+                print str(int(time.time()) % 60) + ": " + "sleep(20)"
+                delta_time(20)
 
-            if(firstorsecond == "first"):
+            if firstorsecond == "first":
                 if(x == 0):
+                    print str(int(time.time()) % 60) + ": " + "listen_config()"
                     listen_config()
+                    print str(int(time.time()) % 60) + ": " + "sleep(10)"
+                    time.sleep(10)
+                    print str(int(time.time()) % 60) + ": " + "delta_time(20)"
+                    delta_time(20)
                 to_write = series_dir + "test" + str(x) + ".pcap"
+                print str(int(time.time()) % 60) + ": " +  "tcpdump", "-ennvvKXXSi", dev, "port", "12121", "-w", to_write
                 tcpdmp = subprocess.Popen(["tcpdump", "-ennvvvKXXSi", dev,
                 "port 12121", "-w", to_write])
-                delta_time(30 + (15 * y), start_time)
+                print str(int(time.time()) % 60) + ": " + "sleep(15)"
+                time.sleep(15)
+                print str(int(time.time()) % 60) + ": " + "kill(tcpdmp)"
                 subprocess.Popen.kill(tcpdmp)
-
+                print str(int(time.time()) % 60) + ": " + "delta_time(20)"
+                delta_time(20)
 
 def set_click():
+    print str(int(time.time()) % 60) + ": " +  "stopclick()"
     stopclick()
+    print str(int(time.time()) % 60) + ": " +  "click-install", args["click"]
     subprocess.call(["click-install", args["click"]])
 
 def transmit():
+    print str(int(time.time()) % 60) + ": " +  "stopclick()"
     stopclick()
-    subprocess.call(["click-install", clickfile])
+    print str(int(time.time()) % 60) + ": " +  "click-install", clickfile
+    to_install = "./" + clickfile
+    subprocess.call(["click-install", to_install])
 
 def listen_config():
+    print str(int(time.time()) % 60) + ": " +  "stopclick()"
     stopclick()
+    print str(int(time.time()) % 60) + ": " +  "stop network-manager"
     subprocess.call(["stop", "network-manager"])
+    print str(int(time.time()) % 60) + ": " +  "card_down()"
     card_down()
+    print str(int(time.time()) % 60) + ": " +  "iwconfig", dev, "mode", "monitor"
     subprocess.call(["iwconfig", dev, "mode", "monitor"])
+    print str(int(time.time()) % 60) + ": " +  "card_up()"
     card_up()
+    print str(int(time.time()) % 60) + ": " +  "iwconfig", dev, "channel", "2.412"
     subprocess.call(["iwconfig", dev, "channel", "2.412"])
     
 def set_listen():
+    print str(int(time.time()) % 60) + ": " +  "stopclick()"
     stopclick()
 
+    print str(int(time.time()) % 60) + ": " +  "tcpdump", "-enntKXXSi", dev, "port", "12121"
     tcpdmp = subprocess.call(["tcpdump", "-enntKXXSi", dev,
     "port", "12121"])
 
@@ -192,21 +250,26 @@ if __name__ == "__main__":
         set_internet()
 
     elif args["listen"]:
+        subprocess.call(["stop", "network-manager"])
         listen_config()
         set_listen()
 
     elif args["file"]:
+        subprocess.call(["stop", "network-manager"])
         listen_config()
         infile()
 
     elif args["transmit"]:
+        subprocess.call(["stop", "network-manager"])
         click_config()
         transmit()
 
     elif args.get("automate"):
+        subprocess.call(["stop", "network-manager"])
         auto()
 
     elif args.get("click") is not None:
+        subprocess.call(["stop", "network-manager"])
         click_config()
         set_click()
     
