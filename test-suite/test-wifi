@@ -113,11 +113,6 @@ def delta_time(nearest):
 
 def auto():
     for y in range(0, series):
-        try:
-            os.mkdir("./" + runname + "/" + firstorsecond + "_series" + str(y))
-        except:
-            pass
-
         while(int(time.time()) % 10 != 0):
             time.sleep(1)
 
@@ -126,6 +121,10 @@ def auto():
         except:
             pass
 
+        try:
+            os.mkdir("./" + runname + "/" + firstorsecond + "_series" + str(y))
+        except:
+            pass
  
         series_dir = "./" + runname + "/" + firstorsecond + "_series" + str(y) + "/"
         for x in range(0, sendsperseries):
