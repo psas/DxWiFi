@@ -1,0 +1,17 @@
+#!/usr/bin/env python
+import os
+import subprocess
+import time
+import sys
+
+while True:
+    tcpdmp = "tcpdump -tqi wlan2 -c 1"
+    killme = subprocess.Popen(tcpdmp, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    time.sleep(.2)
+    output = killme.stdout.read()
+    for field in output.split(" "):
+        if "dB" in field:
+            sys.stdout.write("  %s \r" % field)
+            sys.stdout.flush()
+    killme.kill()
+
