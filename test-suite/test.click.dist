@@ -32,6 +32,6 @@ elementclass UDPGen {
   
 }
  
-u :: UDPGen(wlan2, 1250, 10000, 100, 0x0800,
+u :: UDPGen(wlan2, 1250, 1000, 1000, 0x0800,
 	    wlan2, 192.168.0.5, 12121,
 	    ff:ff:ff:ff:ff:ff, 192.168.0.255, 12121);
