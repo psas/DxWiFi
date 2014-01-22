@@ -135,11 +135,11 @@ def auto():
                     print str(int(time.time()) % 60) + ": " + "delta_time(20)"
                     delta_time(20)
                 print str(int(time.time()) % 60) + ": " + "sleep(2)"
-                time.sleep(2)
+                time.sleep(1)
                 print str(int(time.time()) % 60) + ": " + "transmit()"
                 transmit()
                 print str(int(time.time()) % 60) + ": " + "sleep(13)"
-                time.sleep(13)
+                time.sleep(14)
                 print str(int(time.time()) % 60) + ": " + "delta_time(20)"
                 delta_time(20)
 
@@ -190,7 +190,7 @@ def auto():
                 tcpdmp = subprocess.Popen(["tcpdump", "-ennvvvKXXSi", dev,
                 "port 12121", "-w", to_write])
                 print str(int(time.time()) % 60) + ": " + "sleep(15)"
-                time.sleep(15)
+                time.sleep(17)
                 print str(int(time.time()) % 60) + ": " + "kill(tcpdmp)"
                 subprocess.Popen.kill(tcpdmp)
                 print str(int(time.time()) % 60) + ": " + "delta_time(20)"
@@ -213,8 +213,6 @@ def transmit():
 def listen_config():
     print str(int(time.time()) % 60) + ": " +  "stopclick()"
     stopclick()
-    print str(int(time.time()) % 60) + ": " +  "stop network-manager"
-    subprocess.call(["stop", "network-manager"])
     print str(int(time.time()) % 60) + ": " +  "card_down()"
     card_down()
 
