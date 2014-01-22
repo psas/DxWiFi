@@ -53,7 +53,7 @@ args = vars(parser.parse_args())
 
 def test_click():
     try:
-        click = subprocess.check_output(["click", "--version"])
+        click = subprocess.call(["click", "--version"])
     except:
         exit("You must have click installed, or else.")
 
@@ -66,7 +66,7 @@ def set_internet():
     subprocess.call(["start", "network-manager"])
 
 def stopclick():
-    subprocess.call(["click-uninstall"])
+    os.system("click-uninstall")
 
 def card_down():
     print str(int(time.time()) % 60) + ": " +  "stopclick()"
@@ -86,6 +86,8 @@ def click_config():
     print str(int(time.time()) % 60) + ": " + "card_down()"
     card_down()
 
+    print str(int(time.time()) % 60) + ": " + "sleep(2)"
+    time.sleep(2)
     try:
         print str(int(time.time()) % 60) + ": " +  "iwconfig", dev, "mode", "ad-hoc", "essid", essid
         subprocess.call(["iwconfig", dev, "mode",
@@ -93,6 +95,8 @@ def click_config():
     except:
         exit()
 
+    print str(int(time.time()) % 60) + ": " + "sleep(2)"
+    time.sleep(2)
     try:
         print str(int(time.time()) % 60) + ": " +  "ifconfig", dev, ip
         subprocess.call(["ifconfig", dev, ip])
@@ -129,9 +133,9 @@ def auto():
                 if(x == 0):
                     print str(int(time.time()) % 60) + ": " +  "click_config()"
                     click_config()
-                    print str(int(time.time()) % 60) + ": " + "sleep(20)"
+                    print str(int(time.time()) % 60) + ": " + "delta_time(20)"
                     delta_time(20)
-                print str(int(time.time()) % 60) + ": " + "sleep(12)"
+                print str(int(time.time()) % 60) + ": " + "sleep(2)"
                 time.sleep(2)
                 print str(int(time.time()) % 60) + ": " + "transmit()"
                 transmit()
@@ -197,14 +201,15 @@ def set_click():
     print str(int(time.time()) % 60) + ": " +  "stopclick()"
     stopclick()
     print str(int(time.time()) % 60) + ": " +  "click-install", args["click"]
-    subprocess.call(["click-install", args["click"]])
+    os.system(["click-install", args["click"]])
 
 def transmit():
     print str(int(time.time()) % 60) + ": " +  "stopclick()"
     stopclick()
+    print str(int(time.time()) % 60) + ": " + "sleep(2)"
+    time.sleep(2)
     print str(int(time.time()) % 60) + ": " +  "click-install", clickfile
-    to_install = "./" + clickfile
-    subprocess.call(["click-install", to_install])
+    os.system("click-install " + clickfile)
 
 def listen_config():
     print str(int(time.time()) % 60) + ": " +  "stopclick()"
@@ -213,8 +218,14 @@ def listen_config():
     subprocess.call(["stop", "network-manager"])
     print str(int(time.time()) % 60) + ": " +  "card_down()"
     card_down()
+
+    print str(int(time.time()) % 60) + ": " + "sleep(2)"
+    time.sleep(2)
     print str(int(time.time()) % 60) + ": " +  "iwconfig", dev, "mode", "monitor"
     subprocess.call(["iwconfig", dev, "mode", "monitor"])
+
+    print str(int(time.time()) % 60) + ": " + "sleep(2)"
+    time.sleep(2)
     print str(int(time.time()) % 60) + ": " +  "card_up()"
     card_up()
     print str(int(time.time()) % 60) + ": " +  "iwconfig", dev, "channel", "2.412"
