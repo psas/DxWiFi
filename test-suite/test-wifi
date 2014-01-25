@@ -160,7 +160,7 @@ def auto():
                 print str(int(time.time()) % 60) + ": " + "sleep(17)"
                 time.sleep(17)
                 print str(int(time.time()) % 60) + ": " + "kill(tcpdmp)"
-                subprocess.Popen.kill(tcpdmp)
+                os.kill(tcpdmp.pid, signal.SIGINT)
                 print str(int(time.time()) % 60) + ": " + "sleep(20)"
                 delta_time(20)
 
@@ -197,7 +197,7 @@ def auto():
                 print str(int(time.time()) % 60) + ": " + "sleep(17)"
                 time.sleep(17)
                 print str(int(time.time()) % 60) + ": " + "kill(tcpdmp)"
-                subprocess.Popen.kill(tcpdmp)
+                os.kill(tcpdmp.pid, signal.SIGINT)
                 print str(int(time.time()) % 60) + ": " + "delta_time(20)"
                 delta_time(20)
 
