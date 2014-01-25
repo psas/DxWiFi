@@ -113,7 +113,7 @@ def delta_time(nearest):
 
 def auto():
     for y in range(0, series):
-        while(int(time.time()) % 10 != 0):
+        while(int(time.time()) % 20 != 0):
             time.sleep(1)
 
         try:
