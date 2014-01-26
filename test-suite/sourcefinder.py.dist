@@ -4,14 +4,28 @@ import subprocess
 import time
 import sys
 
+max_len = 2
+max_str = -1000
+
 while True:
-    tcpdmp = "tcpdump -tqi wlan2 -c 1"
+    tcpdmp = "tcpdump -tqi wlan0 -c 1 port 12121"
+
     killme = subprocess.Popen(tcpdmp, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     time.sleep(.2)
     output = killme.stdout.read()
     for field in output.split(" "):
         if "dB" in field:
-            sys.stdout.write("  %s \r" % field)
+            clean = list("                                                            ")
+            strength = field.split('d')
+            field += " " + (((100 + int(strength[0]))/2) * "=") + '|'
+            current_len = len(field)
+            if current_len > max_len:
+                max_len = current_len
+            if int(max_str) < int(strength[0]):
+                max_str = strength[0]
+            clean[max_len - 1] = "|" + str(max_str)
+            sys.stdout.write(" %s\r" % "".join(clean))
+            sys.stdout.flush()
+            sys.stdout.write(" %s\r" % field)
             sys.stdout.flush()
     killme.kill()
-
