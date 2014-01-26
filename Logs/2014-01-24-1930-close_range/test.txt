@@ -1,0 +1,6 @@
+Location: PSU rocket room
+Station 1: Helical
+Station 2: Omni
+
+amps hooked up on both sides
+about 40' between stations
