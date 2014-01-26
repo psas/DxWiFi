@@ -5,6 +5,9 @@ Test Date
 	Sun 26 January 2014
 
 Test Description
+	One team set up a station at Council Crest and one team set up a station
+	at Rocky Butte. A DxWifi connection was made between each site and tests
+	were executed to determine QoS between different antenna selections.
 
 Test Source code location
 	GITHUB: https://github.com/psas/DxWiFi.git
@@ -12,6 +15,9 @@ Test Source code location
 Abbreviations
 	CC: 	Council Crest Site
 	RB: 	Rocky Butte Site
+	OMNI:   Omnidirectional Antenna (Gain: ?? )
+	BBQ:    Grill or Grid Antenna   (Gain: 24db)
+	CPA:    Circular Patch Antenna  (Gain: ?? )
 
 Test Goals
 	Demonstrate wifi connectivity between 
@@ -55,7 +61,6 @@ Initial setup
 	RX: -97db       Tx Vertical
 	RX: -inf db     Tx 180 away from CC Target
 	Tx 1W			RX: -72db
-			
 
 	At CC Site:
 		BBQ antenna was mounted on an aluminum 6ft ladder
@@ -77,6 +82,12 @@ First Test Description
 		CC Rx: -89db
 		RB Rx: -91db
 
+		At CC Site:
+			BBQ antenna was mounted on an aluminum 6ft ladder
+
+		At RB Site:
+			Helical Antenna was mounted on ????
+
 Second Test Description
 	Name: 			PATCH_1
 	CC Antenna:     CPA 
@@ -94,6 +105,10 @@ Second Test Description
 		CC Rx: -89db
 		RB Rx: -91db
 
+		At CC Site:
+			CPA was mounted on an aluminum 6ft ladder
+				It is part of the LV3 Rocket Antenna Section
+
 Third Test Description OMNI
 	Name: 			OMNI
 	CC Antenna:     BBQ Antenna
@@ -108,17 +123,19 @@ Third Test Description OMNI
 		CC Rx: -80db
 		RB Rx: -84db
 
-Antenna Survey
+		At CC Site
+			OMNI was mounted on an aluminum 6ft ladder
+
+Antenna Site Survey
 	Description
+		?
 	CC
 		OMNI
 		CPA
 
+	RB
+		Helical
+		???
 
 
-
-
-
-
-	
 
