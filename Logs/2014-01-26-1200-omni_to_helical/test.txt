@@ -1,0 +1,3 @@
+Location: Council Crest to Rocky Butte
+Station 1 (CC): omni-directional antenna
+Station 2 (RB): helical
