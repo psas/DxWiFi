@@ -1,2 +1,2 @@
 Location: Rocky Butte
-Station 1 (CC): About a minute of promiscuous packet gather with various antennas
+Station 1 (CC): About a minute of promiscuous packet gathering in each pcap file
