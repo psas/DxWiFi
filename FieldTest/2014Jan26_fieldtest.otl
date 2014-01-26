@@ -1,0 +1,124 @@
+
+Field Test Notes
+
+Test Date
+	Sun 26 January 2014
+
+Test Description
+
+Test Source code location
+	GITHUB: https://github.com/psas/DxWiFi.git
+
+Abbreviations
+	CC: 	Council Crest Site
+	RB: 	Rocky Butte Site
+
+Test Goals
+	Demonstrate wifi connectivity between 
+
+Locations
+	Distance between sites: 
+		12.29 km +/- 0.01km distance
+	Elevation tool: 
+		http://www.daftlogic.com/sandbox-google-maps-find-altitude.htm
+	GPS tool: 
+		At CC: HTC ONE Phone running "GPS TEST" app v1.2.9
+		At RB: ???
+	Rocky Butte Location
+		GPS:       45.54708 -122.566162
+		Elevation: 181m MSL (not from GPS)
+	Council Crest Location
+		GPS:       45.54708 -122.566162
+		Elevation: 322m MSL (not from GPS)
+	
+Antenna Description
+	Helical
+		Circularly polarized 
+	CPA 
+		Vertical polarized circular patch antenna
+	BBQ - Grid Dish (Grill) 
+		vertical polarized grid antenna
+	OMNI - Omnidirectional Antenna
+		whip style
+
+Power TX (all tests):
+	1 Watt Average Power 3 Watt Peak
+
+Callsign 
+	KG7CJT
+
+Initial setup
+	Time: 			1139PST
+
+	CC:  BBQ		RB: Helical
+	RX: -72db       Tx At CC Target
+	RX: -97db       Tx Vertical
+	RX: -inf db     Tx 180 away from CC Target
+	Tx 1W			RX: -72db
+			
+
+	At CC Site:
+		BBQ antenna was mounted on an aluminum 6ft ladder
+
+	At RB Site:
+		Helical Antenna was mounted on ????
+
+First Test Description
+	Name: 			GRILL_1
+	Time: 			1143PST
+	Setup:			BBQ CC to Helical RB
+	Series:  		5 		
+	Sendperseries: 	5
+	Firstorsecond: 	First
+
+	Notes
+		Test interrupted in series 4 at 1205PST
+
+		CC Rx: -89db
+		RB Rx: -91db
+
+Second Test Description
+	Name: 			PATCH_1
+	CC Antenna:     CPA 
+	RB Antenna:     Helical
+	Time: 			1219PST
+	Setup:			CPA CC to Helical RB
+	Series: 3 		
+	Sendperseries: 3 	
+	Firstorsecond: first	
+
+	Note:
+		CC RX: 97% of packets
+		RB RX: 3% of packets
+
+		CC Rx: -89db
+		RB Rx: -91db
+
+Third Test Description OMNI
+	Name: 			OMNI
+	CC Antenna:     BBQ Antenna
+	RB Antenna:     Helical
+	Time: 			1240PST
+	Setup: 			Omnidirectional CC to Helical RB
+	Series: 		?
+	Sendperseries:  ? 	
+	Firstorsecond: 	?
+
+	Notes
+		CC Rx: -80db
+		RB Rx: -84db
+
+Antenna Survey
+	Description
+	CC
+		OMNI
+		CPA
+
+
+
+
+
+
+
+	
+
