@@ -145,4 +145,4 @@ Test interrupted in series 4 at 20:05 UTC
 # Other Photos
 
 ![RB antenna](photos/rb_antenna.jpg)
-![RB Team](photos/rb_teamjpg)
+![RB Team](photos/rb_team.jpg)
