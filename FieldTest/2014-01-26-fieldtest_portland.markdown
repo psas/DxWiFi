@@ -11,6 +11,7 @@ One team set up a station at Council Crest and one team set up a station
 at Rocky Butte. A DxWifi connection was made between each site and tests
 were executed to determine QoS between different antenna selections.
 
+![test board](photos/test_board.jpg)
 
 ### Abbreviations
 
@@ -28,7 +29,12 @@ were executed to determine QoS between different antenna selections.
 
  - `12.29 km ± 0.01 km`
 
+![overview map](photos/map.png)
+
+
 ### Rocky Butte Location
+
+![Rocket Butte Setup](photos/rb_setup.jpg)
 
 From cellphote GPS
 
@@ -134,3 +140,8 @@ Test interrupted in series 4 at 20:05 UTC
 # Antenna Site Survey
 
 ?
+
+
+# Other Photos
+
+![RB antenna](photos/rb_antenna.jpg)
