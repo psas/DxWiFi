@@ -48,6 +48,7 @@ From cellphote GPS
 	
 **[1] Note:** _elevation from this tool: <http://www.daftlogic.com/sandbox-google-maps-find-altitude.htm>_
 
+![Council Crest Setup](photos/cc_site.jpg)
 
 # Antenna Description
 
@@ -88,11 +89,14 @@ At RB Site: Helical Antenna was clamped to a Al tripod
 
 # First Test (BBQ)
 
+![CC BBQ Antenna](photos/cc_bbq.jpg)
+
  - Name: 			GRILL_1
  - Time: 			19:43 UTC
  - Setup:			BBQ CC to Helical RB
- - Series:  		5
- - Sendperseries: 	5
+ - Series:                      5
+ - Sendperseries: 	        5
+ - Firstorsecond:               First
 
 ## Notes
 
@@ -104,13 +108,16 @@ Test interrupted in series 4 at 20:05 UTC
 
 # Second Test (CPA)
 
+![CC CPA Antenna](photos/cc_cpa.jpg)
+
  - Name:         PATCH_1
  - CC Antenna:   CPA 
  - RB Antenna:   Helical
  - Time:         20:19 UTC
  - Setup:        CPA CC to Helical RB
- - Series: 3
+ - Series:        3
  - Sendperseries: 3 	
+ - Firstorsecond: First
 
 ## Notes
 
@@ -141,8 +148,10 @@ Test interrupted in series 4 at 20:05 UTC
 
 ?
 
-
 # Other Photos
 
 ![RB antenna](photos/rb_antenna.jpg)
 ![RB Team](photos/rb_team.jpg)
+![Test Prep at PSU](photos/prep_02.jpg)
+
+
