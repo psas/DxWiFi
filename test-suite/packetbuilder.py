@@ -6,7 +6,7 @@ import struct
 import time
 
 # Defines:
-SEND_IP = b'localhost'
+SEND_IP = b'192.168.0.255'
 SEND_PORT = 12121
 FROM_IP = b'0.0.0.0'
 FROM_PORT = 21212
@@ -39,6 +39,7 @@ delay = timepass/PACKET_N
 def udp():
     """UDP Socket creator as a context."""
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
     sock.bind((FROM_IP, FROM_PORT))
     sock.settimeout(0.1)
     yield sock
