@@ -1,9 +1,16 @@
 #!/usr/bin/env python
 from __future__ import print_function
 from contextlib import contextmanager
+import threading
+import serial
 import socket
 import struct
 import time
+
+GPS_Device = serial.Serial('/dev/ttyUSB0', 9600, timeout=None)
+GPS_Device.write("$PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0*28\r\n")
+GPS_Device.write("$PMTK220,200*2C\r\n")
+GPS_Data = ''
 
 # Defines:
 SEND_IP = b'192.168.0.255'
@@ -20,20 +27,22 @@ RATE = 1e6 # 1 million Mbit/s
 
 # Packet definition
 PACKET = [
-    {'fourcc': 'SEQN', 'struct': struct.Struct("!4sL"), 'data': lambda: s},
-    {'fourcc': 'TMST', 'struct': struct.Struct("!4sQ"), 'data': lambda: int(time.time()*1000)},
+    {'fourcc': '0' * 2 + 'SEQN', 'struct': struct.Struct("!6s12s"), 'data': lambda: "%10d" % s},
+    {'fourcc': 'TMST', 'struct': struct.Struct("!4s12s"), 'data': lambda: "%12u" % int(time.time())},
+    {'fourcc': 'SIZE', 'struct': struct.Struct("!4s12s"), 'data': lambda: "%12u" % PACKET_S},
 ]
 
 # calculate leftover size
-size = 0
-for m in PACKET:
-    size += m['struct'].size
-leftovers = chr(0)*(PACKET_S-size)
+def add_zeroes():
+    size = 0
+    for m in PACKET:
+        size += m['struct'].size + len(GPS_Data)
+    leftovers = chr(0)*(PACKET_S-size)
+    return leftovers
 
 # rate calc
 timepass = (PACKET_N*PACKET_S*8)/RATE
 delay = timepass/PACKET_N
-
 
 @contextmanager
 def udp():
@@ -50,15 +59,28 @@ def send(msg):
     with udp() as sock:
         sock.sendto(msg, (SEND_IP, SEND_PORT))
 
+def readgps():
+    global GPS_Data
+    while 1:
+        current_line = GPS_Device.readline()
+        if '$GPGGA' in current_line:
+            GPS_Data = current_line
+
+def start_gps_daemon():
+    gps_raw = threading.Thread(target=readgps)
+    gps_raw.daemon = True
+    gps_raw.start()
+
 if __name__ == '__main__':
 
-    # Sequence counter
+    start_gps_daemon()
     s = 0
     while s < PACKET_N:
+        zeroes = ''
         data = ''
         for m in PACKET:
             data += m['struct'].pack(m['fourcc'], m['data']())
-        data += leftovers
+        data += GPS_Data + add_zeroes()
         send(data)
         s += 1
         time.sleep(delay)
