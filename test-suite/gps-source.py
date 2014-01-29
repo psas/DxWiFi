@@ -7,10 +7,27 @@ import socket
 import struct
 import time
 
-GPS_Device = serial.Serial('/dev/ttyUSB0', 9600, timeout=None)
-GPS_Device.write("$PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0*28\r\n")
-GPS_Device.write("$PMTK220,200*2C\r\n")
+GPS_on = False
 GPS_Data = ''
+GPS_ttynum = 0
+
+def gps_open():
+    global GPS_on
+    global GPS_ttynum
+    try:
+        print('/dev/ttyUSB' + str(GPS_ttynum))
+        GPS_Device = serial.Serial('/dev/ttyUSB' + str(GPS_ttynum), 9600, timeout=None)
+        GPS_Device.write("$PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0*28\r\n")
+        GPS_Device.write("$PMTK220,200*2C\r\n")
+        GPS_on = True
+        return GPS_Device
+    except:
+        GPS_on = False
+        if GPS_ttynum < 10:
+            GPS_ttynum += 1
+        else:
+            GPS_ttynum = 0
+        return 0        
 
 # Defines:
 SEND_IP = b'192.168.0.255'
@@ -19,8 +36,9 @@ FROM_IP = b'0.0.0.0'
 FROM_PORT = 21212
 
 # Number packets to send
+INFINITE_PACKETS = True
 PACKET_N = 1000     # packets
-PACKET_S = 1000     # bytes
+PACKET_S = 300     # bytes
 
 # Send rate [Mbit/second]
 RATE = 1e6 # 1 million Mbit/s
@@ -61,10 +79,18 @@ def send(msg):
 
 def readgps():
     global GPS_Data
+    global GPS_on
     while 1:
-        current_line = GPS_Device.readline()
-        if '$GPGGA' in current_line:
-            GPS_Data = current_line
+        if GPS_on:
+            try:
+                current_line = GPS.readline()
+            except:
+                GPS_Data = ''
+                GPS_on = False
+            if '$GPGGA' in current_line and GPS_on == True:
+                GPS_Data = current_line
+        else:
+            GPS = gps_open()
 
 def start_gps_daemon():
     gps_raw = threading.Thread(target=readgps)
@@ -75,7 +101,7 @@ if __name__ == '__main__':
 
     start_gps_daemon()
     s = 0
-    while s < PACKET_N:
+    while s < PACKET_N or INFINITE_PACKETS == True:
         zeroes = ''
         data = ''
         for m in PACKET:
