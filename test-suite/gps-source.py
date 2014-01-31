@@ -7,6 +7,7 @@ import socket
 import struct
 import time
 
+INFINITE_PACKETS = False
 GPS_on = False
 GPS_Data = ''
 GPS_ttynum = 0
@@ -15,7 +16,7 @@ def gps_open():
     global GPS_on
     global GPS_ttynum
     try:
-        print('/dev/ttyUSB' + str(GPS_ttynum))
+        #print('/dev/ttyUSB' + str(GPS_ttynum))
         GPS_Device = serial.Serial('/dev/ttyUSB' + str(GPS_ttynum), 9600, timeout=None)
         GPS_Device.write("$PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0*28\r\n")
         GPS_Device.write("$PMTK220,200*2C\r\n")
@@ -27,7 +28,7 @@ def gps_open():
             GPS_ttynum += 1
         else:
             GPS_ttynum = 0
-        return 0        
+        return 0
 
 # Defines:
 SEND_IP = b'192.168.0.255'
@@ -36,16 +37,12 @@ FROM_IP = b'0.0.0.0'
 FROM_PORT = 21212
 
 # Number packets to send
-INFINITE_PACKETS = True
-PACKET_N = 1000     # packets
-PACKET_S = 300     # bytes
-
-# Send rate [Mbit/second]
-RATE = 1e6 # 1 million Mbit/s
+PACKET_S = 1000     # bytes
+PACKET_N = 1000     # total number of packets to send
 
 # Packet definition
 PACKET = [
-    {'fourcc': '0' * 2 + 'SEQN', 'struct': struct.Struct("!6s12s"), 'data': lambda: "%10d" % s},
+    {'fourcc': '0' * 2 + 'SEQN', 'struct': struct.Struct("!6s12s"), 'data': lambda: "%12d" % s},
     {'fourcc': 'TMST', 'struct': struct.Struct("!4s12s"), 'data': lambda: "%12u" % int(time.time())},
     {'fourcc': 'SIZE', 'struct': struct.Struct("!4s12s"), 'data': lambda: "%12u" % PACKET_S},
 ]
@@ -59,8 +56,8 @@ def add_zeroes():
     return leftovers
 
 # rate calc
-timepass = (PACKET_N*PACKET_S*8)/RATE
-delay = timepass/PACKET_N
+packpersec = 125e3 / PACKET_S
+delay = 1 / packpersec
 
 @contextmanager
 def udp():
@@ -101,12 +98,22 @@ if __name__ == '__main__':
 
     start_gps_daemon()
     s = 0
+    packet_count = 0
+    sendtime = time.time()
+    print(time.time())
     while s < PACKET_N or INFINITE_PACKETS == True:
         zeroes = ''
         data = ''
         for m in PACKET:
             data += m['struct'].pack(m['fourcc'], m['data']())
         data += GPS_Data + add_zeroes()
+        #print(data)
+        time.sleep((sendtime + delay) - time.time())
         send(data)
+        sendtime = time.time()
+        packet_count += 1
+        if s == 9999999:
+            s = 0
         s += 1
-        time.sleep(delay)
+    print("Packets sent: " + str(packet_count))
+    print(time.time())
