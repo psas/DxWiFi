@@ -74,6 +74,11 @@ def send(msg):
     with udp() as sock:
         sock.sendto(msg, (SEND_IP, SEND_PORT))
 
+def sleepsafe(num):
+    if num < 0:
+        return 0
+    return num
+
 def readgps():
     global GPS_Data
     global GPS_on
@@ -100,7 +105,6 @@ if __name__ == '__main__':
     s = 0
     packet_count = 0
     sendtime = time.time()
-    print(time.time())
     while s < PACKET_N or INFINITE_PACKETS == True:
         zeroes = ''
         data = ''
@@ -108,12 +112,11 @@ if __name__ == '__main__':
             data += m['struct'].pack(m['fourcc'], m['data']())
         data += GPS_Data + add_zeroes()
         #print(data)
-        time.sleep((sendtime + delay) - time.time())
+        sleeptime = sendtime + delay - time.time()
+        if sleeptime > 0:
+            time.sleep(sleeptime)
         send(data)
         sendtime = time.time()
-        packet_count += 1
         if s == 9999999:
             s = 0
         s += 1
-    print("Packets sent: " + str(packet_count))
-    print(time.time())
