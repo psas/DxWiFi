@@ -1,6 +1,7 @@
 #!/bin/sh
 
-# ./$0 [input.pcap [*.pcap]] > output.nmea
+# This one appends the signal strength after the NMEA sentence.
+# ./$0 [input.pcap [*.pcap]] > output.nmea-db
 
 files=("$@")
 [ -z "$files" ] && files=(*.pcap)
