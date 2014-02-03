@@ -11,7 +11,7 @@ ipcounter=0
 tcpcounter=0
 udpcounter=0
 
-filename='data.pcap'
+filename='groundstation12.pcap'
 
 for ts, pkt in dpkt.pcap.Reader(open(filename,'r')):
 
@@ -31,7 +31,16 @@ for ts, pkt in dpkt.pcap.Reader(open(filename,'r')):
     ipcounter+=1
     ip = ip.partition(tag)
     ip = ip[0].partition("GPGGA")
-    print str(rssi) + "," + ip[2]
+    string =  str(rssi) + "," + ip[2]
+    string = string[:20] + string[21:]
+    string = string[:18] + '.' + string[18:]
+    
+    
+    string = string[:33] + string[34:]
+    string = string[:31] + '.' + string[31:]
+    string = string[:25] + string[26:]
+    string = string[:37] + string[38:]
+    print string
     #print ip[0]
 
 #    if ip.p==dpkt.ip.IP_PROTO_TCP: 
