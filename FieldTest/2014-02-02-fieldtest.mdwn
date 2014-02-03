@@ -25,6 +25,6 @@ More TBD.
 
 From cellphote GPS
 
- - GPS: 
+ - GPS: <http://maps.google.com/maps?q=loc:45.546890,-122.565918>
  - Elevation<sup>1</sup>: 
 
