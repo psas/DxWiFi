@@ -21,10 +21,17 @@ More TBD.
 
 # Locations
 
-### Rocky Butte Location
+## Rocky Butte Location
 
 From cellphote GPS
 
  - GPS: <http://maps.google.com/maps?q=loc:45.546890,-122.565918>
  - Elevation<sup>1</sup>: 
+
+## Da plane!
+
+![Plane!](2014-02-02-photos/plane.jpg)
+![Placement of anntenna on the way back!](2014-02-02-photos/antenna-on-way-back.jpg)
+![The DxWiFi board in the plane!](2014-02-02-photos/dxwifi-board.jpg)
+![Placement of the GPS antenna!](2014-02-02-photos/gps-antenna.jpg)
 
