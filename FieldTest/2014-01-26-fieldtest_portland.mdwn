@@ -11,7 +11,7 @@ One team set up a station at Council Crest and one team set up a station
 at Rocky Butte. A DxWifi connection was made between each site and tests
 were executed to determine QoS between different antenna selections.
 
-![test board](photos/test_board.jpg)
+![test board](2014-01-26-photos/test_board.jpg)
 
 ### Abbreviations
 
@@ -29,12 +29,12 @@ were executed to determine QoS between different antenna selections.
 
  - `12.29 km ± 0.01 km`
 
-![overview map](photos/map.png)
+![overview map](2014-01-26-photos/map.png)
 
 
 ### Rocky Butte Location
 
-![Rocket Butte Setup](photos/rb_setup.jpg)
+![Rocket Butte Setup](2014-01-26-photos/rb_setup.jpg)
 
 From cellphote GPS
 
@@ -48,7 +48,7 @@ From cellphote GPS
 	
 **[1] Note:** _elevation from this tool: <http://www.daftlogic.com/sandbox-google-maps-find-altitude.htm>_
 
-![Council Crest Setup](photos/cc_site.jpg)
+![Council Crest Setup](2014-01-26-photos/cc_site.jpg)
 
 # Antenna Description
 
@@ -89,7 +89,7 @@ At RB Site: Helical Antenna was clamped to a Al tripod
 
 # First Test (BBQ)
 
-![CC BBQ Antenna](photos/cc_bbq.jpg)
+![CC BBQ Antenna](2014-01-26-photos/cc_bbq.jpg)
 
  - Name: 			GRILL_1
  - Time: 			19:43 UTC
@@ -108,7 +108,7 @@ Test interrupted in series 4 at 20:05 UTC
 
 # Second Test (CPA)
 
-![CC CPA Antenna](photos/cc_cpa.jpg)
+![CC CPA Antenna](2014-01-26-photos/cc_cpa.jpg)
 
  - Name:         PATCH_1
  - CC Antenna:   CPA 
@@ -150,8 +150,8 @@ Test interrupted in series 4 at 20:05 UTC
 
 # Other Photos
 
-![RB antenna](photos/rb_antenna.jpg)
-![RB Team](photos/rb_team.jpg)
-![Test Prep at PSU](photos/prep_02.jpg)
+![RB antenna](2014-01-26-photos/rb_antenna.jpg)
+![RB Team](2014-01-26-photos/rb_team.jpg)
+![Test Prep at PSU](2014-01-26-photos/prep_02.jpg)
 
 

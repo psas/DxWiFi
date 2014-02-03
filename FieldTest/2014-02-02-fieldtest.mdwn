@@ -1,0 +1,30 @@
+# Field Test Notes
+
+**Sun 02 february 2014**
+
+<https://github.com/psas/DxWiFi>
+
+
+## Test Description
+
+One team set up a station at Rocky Butte and one team flew a Cessna 172 to near Seattle, Washington.
+
+More TBD.
+
+### Abbreviations
+
+ - **RB**: Rocky Butte Site
+ - **OMNI**: Omnidirectional Antenna _0 dBi_
+ - **BBQ**: Grill or Grid Antenna _24 dBi_
+ - **Hat**: Stubbed Helical Antenna _13 dBi_
+
+
+# Locations
+
+### Rocky Butte Location
+
+From cellphote GPS
+
+ - GPS: 
+ - Elevation<sup>1</sup>: 
+
