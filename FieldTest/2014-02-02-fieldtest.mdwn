@@ -1,6 +1,6 @@
 # Field Test Notes
 
-**Sun 02 february 2014**
+**Sun 02 February 2014**
 
 <https://github.com/psas/DxWiFi>
 
@@ -14,17 +14,36 @@ More TBD.
 ### Abbreviations
 
  - **RB**: Rocky Butte Site
- - **OMNI**: Omnidirectional Antenna _0 dBi_
+ - **OMNI**: Omnidirectional Antenna _? dBi_
  - **BBQ**: Grill or Grid Antenna _24 dBi_
  - **Hat**: Stubbed Helical Antenna _13 dBi_
+ - **ASL**: Above Sea Level
+
+
+# Results
+
+Northmost coordinates received: 46 39.5008 N 122 25.1627 W, elevation 2925.8 m ASL at -60dB
+
+That is NW of Morton, WA, about **124.06 km** from RB at ground level.
+
+Signal strength from all packets received ranged from -70dB to -39dB with average -57.3568dB.
+
+A total of 136435 packets were collected.  Of which 126799 contained valid NMEA sentences (92.937%)
 
 
 # Locations
 
-### Rocky Butte Location
+## Rocky Butte Location
 
-From cellphote GPS
+From cellphone GPS
 
  - GPS: <http://maps.google.com/maps?q=loc:45.546890,-122.565918>
  - Elevation<sup>1</sup>: 
+
+## Da plane!
+
+![Plane!](2014-02-02-photos/plane.jpg)
+![Placement of anntenna on the way back!](2014-02-02-photos/antenna-on-way-back.jpg)
+![The DxWiFi board in the plane!](2014-02-02-photos/dxwifi-board.jpg)
+![Placement of the GPS antenna!](2014-02-02-photos/gps-antenna.jpg)
 
