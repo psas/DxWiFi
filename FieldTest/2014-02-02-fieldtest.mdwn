@@ -42,8 +42,8 @@ From cellphone GPS
  - GPS: <http://maps.google.com/maps?q=loc:45.546890,-122.565918>
  - Elevation<sup>1</sup>: 
 
-![Pointing the ground antenna](pointing-the-antenna.jpg)
-![Looking for the plane before landing at Troutdale](right-before-landing.jpg)
+![Pointing the ground antenna](2014-02-02-photos/pointing-the-antenna.jpg)
+![Looking for the plane before landing at Troutdale](2014-02-02-photos/right-before-landing.jpg)
 
 
 ## Da plane!
