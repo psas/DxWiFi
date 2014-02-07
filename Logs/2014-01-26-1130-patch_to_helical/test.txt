@@ -1,3 +1,14 @@
 Location: Council Crest to Rocky Butte
 Station 1 (CC): PSAS Patch antenna
 Station 2 (RB): helical
+
+
+first_series (RB --> CC)
+---------------------------
+Tx: helical 
+Rx: patch
+
+second_series (CC --> RB)
+---------------------------
+Tx: patch
+Rx: helical 
