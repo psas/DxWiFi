@@ -48,8 +48,14 @@ From cellphone GPS
 
 ## Da plane!
 
+ - Writeup with more flight photos: <a href="http://www.wickerbox.net/2014/02/dxwifi-124km-flight-test/">124km DxWifi Flight Test</a>
+
 ![Plane!](2014-02-02-photos/plane.jpg)
-![Placement of anntenna on the way back](2014-02-02-photos/antenna-on-way-back.jpg)
+![Pilot!](2014-02-02-photos/pilot-operator.jpg)
+![Brief detour over Mt St Helens caldera](2014-02-02-photos/mt-st-helens.jpg)
+![Placement of antenna on the way back](2014-02-02-photos/antenna-on-way-back.jpg)
 ![The DxWiFi board in the plane](2014-02-02-photos/dxwifi-board.jpg)
+![Placement of antenna in front window](2014-02-02-photos/antenna-front-window.jpg)
+![Placement of antenna board on passenger window](2014-02-02-photos/board-right-window.jpg)
 ![Placement of the GPS antenna](2014-02-02-photos/gps-antenna.jpg)
 
