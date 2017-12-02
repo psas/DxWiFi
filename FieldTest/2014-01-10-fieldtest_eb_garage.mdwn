@@ -16,3 +16,18 @@ in and helping with the link and giving us false measurements. We did confirm th
 sufficient by placing terminators on both boards with this seperation and confirming a link was
 not possible.
 
+![Test host side](2014-01-10-photos/2014-01-10 17.42.36.jpg)
+
+![Termination needed to achieve minimum discernable signal](2014-01-10-photos/2014-01-10 17.49.30.jpg)
+
+![Echo host side](2014-01-10-photos/2014-01-10 17.43.10.jpg)
+
+![Transmission line seperation](2014-01-10-photos/2014-01-10 17.43.51.jpg)
+
+
+## Testing notes
+
+* Equipment used
+* What was the acceptable BER?
+* What was the attenuation for that BER?
+* Conclusions
