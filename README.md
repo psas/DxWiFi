@@ -1,3 +1,8 @@
+**NOTE: THIS PROJECT IS DEPRECATED. PLEASE SEE THE OreSat DxWiFi Project for the latest [hardware](https://github.com/oresat/oresat-dxwifi-hardware) and [software](https://github.com/oresat/oresat-dxwifi-software).**
+
+-----
+
+
 DxWiFi
 ======
 
